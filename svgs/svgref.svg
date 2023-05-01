@@ -14,6 +14,7 @@
    inkscape:export-ydpi="724.4032"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -27,17 +28,39 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="5.9651515"
-     inkscape:cx="188.76302"
-     inkscape:cy="638.20675"
+     inkscape:zoom="2.9825758"
+     inkscape:cx="561.59512"
+     inkscape:cy="160.59944"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g14909" />
+     inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2087">
+      <stop
+         style="stop-color:#4e3e10;stop-opacity:1;"
+         offset="0"
+         id="stop2083" />
+      <stop
+         style="stop-color:#9c6c1e;stop-opacity:1;"
+         offset="1"
+         id="stop2085" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2087"
+       id="linearGradient2089"
+       x1="145.72365"
+       y1="42.007206"
+       x2="157.95782"
+       y2="42.095921"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <g
      id="g14909"
      inkscape:label="package"
@@ -221,16 +244,16 @@
        id="rect10993"
        width="23.064516"
        height="23.064516"
-       x="132.71005"
-       y="6.614449"
+       x="219.64195"
+       y="19.791939"
        inkscape:export-filename="..\textures\rect.png"
        inkscape:export-xdpi="278.71994"
        inkscape:export-ydpi="278.71994" />
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#fefbfb;stroke-width:0.264999;stroke-dasharray:none;stroke-opacity:1"
        id="path11671"
-       cx="139.75194"
-       cy="65.812904"
+       cx="138.49739"
+       cy="75.849258"
        r="9.0483866"
        inkscape:export-filename="..\textures\circle.png"
        inkscape:export-xdpi="354.12698"
@@ -558,6 +581,74 @@
          inkscape:export-xdpi="354.12698"
          inkscape:export-ydpi="354.12698" />
     </g>
+    <g
+       id="g1260"
+       inkscape:export-filename="..\textures\player\large_fist.png"
+       inkscape:export-xdpi="724.4032"
+       inkscape:export-ydpi="724.4032"
+       transform="translate(1.8818164,-41.65087)">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 129.97079,50.307226 c 0.62727,0.376362 13.67453,-4.767268 13.67453,-4.767268 0,0 0.62727,-1.38 2.63454,-2.885453 2.00727,-1.505452 -0.75272,-10.287262 -0.75272,-10.287262 0,0 -1.75637,-11.03999 3.63817,-4.76727 5.39455,6.272723 0.50182,14.552716 3.88909,12.670898 3.38727,-1.881817 14.31441,2.815655 9.68413,11.156528 -4.90916,8.843211 -11.44049,7.912546 -11.44049,7.912546 0,0 -8.5309,-4.265451 -6.77454,-6.77454 1.75636,-2.509089 -14.55271,0.752727 -14.55271,0.752727"
+         id="path488"
+         sodipodi:nodetypes="ccscssscsc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 157.93375,45.656495 2.69727,1.442725"
+         id="path1109" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 155.92648,48.416493 c 0.25091,0 3.45,0.878181 3.45,0.878181"
+         id="path1111" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 154.79739,50.29831 2.94818,0.815454"
+         id="path1113" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 156.66129,42.846773 c 0.35484,0.08871 6.12097,1.330645 5.41129,3.459678 -0.70968,2.129033 -6.29839,10.82258 -7.00807,9.314516 -0.70967,-1.508064 -2.75,-3.548388 -2.75,-3.548388"
+         id="path1211" />
+    </g>
+    <g
+       id="g1267"
+       inkscape:export-filename="..\textures\player\large_fist_closed.png"
+       inkscape:export-xdpi="724.4032"
+       inkscape:export-ydpi="724.4032"
+       transform="translate(1.8818164,-41.65087)">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 167.94481,50.901225 c 0.62727,0.376362 15.00518,-5.920494 15.00518,-5.920494 1.60234,-1.784912 3.65945,-7.581193 5.36148,-7.713479 7.22906,-0.561858 13.82716,7.679286 13.02205,12.358985 -2.86884,9.863372 -9.71065,8.356094 -9.71065,8.356094 0,0 -7.45706,-1.502609 -10.51427,-1.686566 -6.31622,-0.380057 -13.96218,0.01153 -13.96218,0.01153"
+         id="path488-2"
+         sodipodi:nodetypes="ccsccsc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 195.90777,46.250494 3.88909,-0.06273"
+         id="path1109-3"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 193.9005,49.010492 c 0.25091,0 5.58273,-0.439091 5.58273,-0.439091"
+         id="path1111-0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 192.77141,50.892309 4.20272,-0.376363"
+         id="path1113-7"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.564999"
+         d="m 193.19258,39.990775 c 0.35484,0.08871 7.5637,4.780642 6.85402,6.909675 -0.70968,2.129033 -6.29839,10.82258 -7.00807,9.314516 -0.70967,-1.508064 -2.75,-3.548388 -2.75,-3.548388"
+         id="path1211-7"
+         sodipodi:nodetypes="cssc" />
+    </g>
+    <path
+       style="fill:url(#linearGradient2089);fill-rule:evenodd;stroke:#000000;stroke-width:0.564999;fill-opacity:1"
+       d="m 135.74169,34.060878 c 0,0 -2.61091,10.481935 -0.58812,11.970328 0.16158,0.118894 1.9844,0.322542 2.26519,-0.112469 0.53076,-0.822269 0.60907,-2.817444 1.46822,-3.141659 0.73683,-0.278059 1.00855,-0.181865 2.52797,-0.116105 1.40214,0.06069 2.74986,3.415548 3.23418,3.440196 7.98585,0.406415 14.86698,-1.161187 14.70936,-2.12939 -0.22042,-1.354004 -1.51529,-7.399255 -3.21156,-6.203254 -1.66548,1.174286 -2.34627,1.957477 -4.91161,2.094621 -4.15208,0.221971 -6.36329,1.305532 -8.90727,-1.505454 -0.82839,-0.91533 1.56815,-4.422268 1.56815,-4.422268 z"
+       id="path1632"
+       sodipodi:nodetypes="cssssssssscc"
+       inkscape:export-filename="..\textures\player\heavy_boots.png"
+       inkscape:export-xdpi="724.4032"
+       inkscape:export-ydpi="724.4032" />
   </g>
   <g
      id="g15122"
