@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgofhrw5xbqua"]
+
+[ext_resource type="Script" path="res://scripts/enemy_shoot.gd" id="1_at7hr"]
+[ext_resource type="PackedScene" uid="uid://w4k3resnohvn" path="res://prefabs/projectile_enemy.tscn" id="2_dtkp5"]
+[ext_resource type="Texture2D" uid="uid://c851xleo2aok6" path="res://textures/enemybody.png" id="2_usail"]
+[ext_resource type="PackedScene" uid="uid://7f8rvj1peea2" path="res://prefabs/deathpuddle.tscn" id="3_1efqc"]
+[ext_resource type="Texture2D" uid="uid://cj5cwe70bd8lw" path="res://textures/enemymouth.png" id="3_p11dq"]
+[ext_resource type="Texture2D" uid="uid://dfyo6jvmjeok3" path="res://textures/enemyshootmouth.png" id="4_3gej6"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="6_rikva"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvxwv"]
+size = Vector2(105.539, 24.7099)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.025, 1.025)
+collision_layer = 32769
+collision_mask = 0
+script = ExtResource("1_at7hr")
+Health = 70.0
+Speed = 300.0
+Bullet = ExtResource("2_dtkp5")
+Delay = 1.0
+DeathPuddle = ExtResource("3_1efqc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.292634, 0.295965)
+texture = ExtResource("2_usail")
+
+[node name="Mouth" type="Sprite2D" parent="."]
+position = Vector2(6.2082, 17.383)
+scale = Vector2(0.235632, 0.235632)
+texture = ExtResource("3_p11dq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0.62082, 80.6452)
+shape = SubResource("RectangleShape2D_yvxwv")
+
+[node name="ShootMouth" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3.72492, 23.5912)
+scale = Vector2(0.271412, 0.271412)
+texture = ExtResource("4_3gej6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(0, 79.0121)
+scale = Vector2(0.648604, 0.130662)
+texture = ExtResource("6_rikva")

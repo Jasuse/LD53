@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://n4wlqg245loj"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_dgwx1"]
+[ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="2_lq3us"]
+[ext_resource type="Texture2D" uid="uid://oe872yw27buj" path="res://textures/houses/g22695.png" id="3_sv44e"]
+[ext_resource type="PackedScene" uid="uid://dp16a28e2dpjq" path="res://prefabs/houses/bar.tscn" id="4_f1iu7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sv2yw"]
+normal = Vector2(0.999742, -0.0227214)
+distance = 181.003
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_75ipm"]
+normal = Vector2(-1, 0)
+distance = 36.2353
+
+[node name="scene2" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+modulate = Color(0.396078, 0.396078, 0.396078, 1)
+z_index = -2
+position = Vector2(2207.07, 265)
+scale = Vector2(28.7338, 1.87625)
+texture = ExtResource("1_dgwx1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-3, 6)
+zoom = Vector2(0.7, 0.7)
+
+[node name="LeftBorder" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(-349, 0)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LeftBorder"]
+position = Vector2(-846, -4)
+shape = SubResource("WorldBoundaryShape2D_sv2yw")
+
+[node name="RightBorder" type="StaticBody2D" parent="Camera2D"]
+position = Vector2(300, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/RightBorder"]
+position = Vector2(620.511, -6)
+shape = SubResource("WorldBoundaryShape2D_75ipm")
+
+[node name="player" parent="." instance=ExtResource("2_lq3us")]
+position = Vector2(-425, 219)
+scale = Vector2(0.377442, 0.377442)
+collision_mask = 12
+
+[node name="G22695" type="Sprite2D" parent="."]
+position = Vector2(-347, -395)
+texture = ExtResource("3_sv44e")
+
+[node name="bar" parent="." instance=ExtResource("4_f1iu7")]
+position = Vector2(857, -435)

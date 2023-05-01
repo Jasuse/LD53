@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7f8rvj1peea2"]
+
+[ext_resource type="Texture2D" uid="uid://csvvir6ttvdw8" path="res://textures/deathpuddle.png" id="1_liyah"]
+
+[node name="deathpuddle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 68)
+scale = Vector2(0.297156, 0.297156)
+texture = ExtResource("1_liyah")

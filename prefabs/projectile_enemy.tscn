@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://w4k3resnohvn"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_bkajn"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="2_aehkc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1r53"]
+radius = 17.1172
+
+[node name="projectile" type="Area2D"]
+collision_layer = 5
+script = ExtResource("1_bkajn")
+IgnoreEnemy = true
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -1
+scale = Vector2(0.309593, 0.309593)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.760784, 0, 0.356863, 1)
+y_sort_enabled = true
+scale = Vector2(0.425781, 0.425781)
+texture = ExtResource("2_aehkc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.596078, 0, 0.2, 1)
+y_sort_enabled = true
+position = Vector2(12, -8)
+scale = Vector2(0.259766, 0.289667)
+texture = ExtResource("2_aehkc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+modulate = Color(0.960784, 0.00784314, 1, 1)
+y_sort_enabled = true
+position = Vector2(19, -13)
+scale = Vector2(0.15332, 0.170969)
+texture = ExtResource("2_aehkc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 70)
+scale = Vector2(0.996995, 1)
+shape = SubResource("CircleShape2D_b1r53")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

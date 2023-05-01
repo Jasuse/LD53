@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://hso6d86736w0"]
+
+[ext_resource type="Script" path="res://scripts/enemy_shoot.gd" id="1_bsesy"]
+[ext_resource type="PackedScene" uid="uid://12go57iv0x2b" path="res://prefabs/projectile_enemy_spit.tscn" id="2_gdgrq"]
+[ext_resource type="Texture2D" uid="uid://c851xleo2aok6" path="res://textures/enemybody.png" id="3_ax4kp"]
+[ext_resource type="PackedScene" uid="uid://7f8rvj1peea2" path="res://prefabs/deathpuddle.tscn" id="3_fe4yq"]
+[ext_resource type="Texture2D" uid="uid://clelgpfubn0ev" path="res://textures/enemyinfectivemouth.png" id="4_thk5s"]
+[ext_resource type="Texture2D" uid="uid://w62pdet4cu1f" path="res://textures/enemyinfectivemouthshoot.png" id="5_w00p7"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="6_bep1s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvxwv"]
+size = Vector2(105.539, 28.4348)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.025, 1.025)
+collision_layer = 32769
+collision_mask = 0
+script = ExtResource("1_bsesy")
+Health = 120.0
+StopDistance = 700.0
+Bullet = ExtResource("2_gdgrq")
+Delay = 3.0
+DeathPuddle = ExtResource("3_fe4yq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.292634, 0.295965)
+texture = ExtResource("3_ax4kp")
+
+[node name="Mouth" type="Sprite2D" parent="."]
+position = Vector2(6.2082, 17.383)
+scale = Vector2(0.235632, 0.235632)
+texture = ExtResource("4_thk5s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0.62082, 78.7827)
+shape = SubResource("RectangleShape2D_yvxwv")
+
+[node name="ShootMouth" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3.72492, 23.5912)
+scale = Vector2(0.271412, 0.271412)
+texture = ExtResource("5_w00p7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(0, 79.0121)
+scale = Vector2(0.648604, 0.130662)
+texture = ExtResource("6_bep1s")

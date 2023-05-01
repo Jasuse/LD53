@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d17u7s26jobbx"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_evclb"]
+[ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="2_x10ks"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="3_k2d7f"]
+[ext_resource type="PackedScene" uid="uid://caqixj8oixi0u" path="res://scenes/scene.tscn" id="4_no55a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s38qm"]
+normal = Vector2(0.0137918, 0.999905)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pufwo"]
+size = Vector2(149, 363)
+
+[node name="main_scene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.247059, 0.247059, 0.247059, 1)
+position = Vector2(61, 198)
+scale = Vector2(5.55469, 1)
+texture = ExtResource("1_evclb")
+
+[node name="player" parent="." instance=ExtResource("2_x10ks")]
+position = Vector2(-203, 92)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6, -127)
+shape = SubResource("WorldBoundaryShape2D_s38qm")
+
+[node name="SwitchToNext" type="Area2D" parent="."]
+script = ExtResource("3_k2d7f")
+Scene = ExtResource("4_no55a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchToNext"]
+position = Vector2(576, 138)
+shape = SubResource("RectangleShape2D_pufwo")
+
+[connection signal="body_entered" from="SwitchToNext" to="SwitchToNext" method="_on_body_entered"]

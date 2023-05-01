@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://coqpoxf4fqoye"]
+
+[ext_resource type="Shader" path="res://shaders/maskui.gdshader" id="1_rd5gr"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="2_e1w76"]
+
+[resource]
+shader = ExtResource("1_rd5gr")
+shader_parameter/mask_transform = Projection(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/mask_texture = ExtResource("2_e1w76")

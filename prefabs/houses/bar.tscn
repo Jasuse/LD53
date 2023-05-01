@@ -1,0 +1,317 @@
+[gd_scene load_steps=13 format=3 uid="uid://dp16a28e2dpjq"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_ui1wu"]
+[ext_resource type="Texture2D" uid="uid://dfg5jy02ew45k" path="res://textures/houses/g21802.png" id="2_gx82s"]
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="3_eijvx"]
+[ext_resource type="Texture2D" uid="uid://kjoy3utaab53" path="res://textures/enemy.png" id="4_1g18v"]
+[ext_resource type="Texture2D" uid="uid://ds6cgufgkwxyk" path="res://textures/package.png" id="5_cifvi"]
+[ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="6_jvvwm"]
+
+[sub_resource type="Animation" id="Animation_1xyl1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorOpened/Monster3/Package2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened/Monster3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ty77o"]
+resource_name = "knock_animation"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"make_player_offer"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened/Monster3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorOpened/Monster2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorOpened/Monster3/Package2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vin2r"]
+resource_name = "package_accept"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"make_player_offer"
+}, {
+"args": [],
+"method": &"enable_player_animtree"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened/Monster2/Package1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorOpened/Monster3/Package2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DoorOpened/Monster2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DoorOpened/Monster3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8cnmx"]
+resource_name = "package_reject"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorOpened/Monster2/Package1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorOpened/Monster3/Package2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorOpened:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"make_player_reset"
+}, {
+"args": [],
+"method": &"enable_player_animtree"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rn2u5"]
+_data = {
+"RESET": SubResource("Animation_1xyl1"),
+"knock_animation": SubResource("Animation_ty77o"),
+"package_accept": SubResource("Animation_vin2r"),
+"package_reject": SubResource("Animation_8cnmx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reuip"]
+size = Vector2(312, 50.25)
+
+[node name="bar" type="Node2D"]
+script = ExtResource("1_ui1wu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gx82s")
+
+[node name="DoorOpened" type="Sprite2D" parent="."]
+visible = false
+clip_children = 2
+position = Vector2(-6, 301.5)
+scale = Vector2(1.28516, 1.16016)
+texture = ExtResource("3_eijvx")
+
+[node name="Monster2" type="Sprite2D" parent="DoorOpened"]
+position = Vector2(86.3708, 39.2188)
+scale = Vector2(0.264665, 0.293181)
+texture = ExtResource("4_1g18v")
+
+[node name="Package1" type="Sprite2D" parent="DoorOpened/Monster2"]
+visible = false
+position = Vector2(-94.08, 173.46)
+scale = Vector2(0.53291, 0.53291)
+texture = ExtResource("5_cifvi")
+
+[node name="Monster3" type="Sprite2D" parent="DoorOpened"]
+visible = false
+position = Vector2(-65.3617, 40.0807)
+scale = Vector2(0.264665, 0.293181)
+texture = ExtResource("4_1g18v")
+flip_h = true
+
+[node name="Package2" type="Sprite2D" parent="DoorOpened/Monster3"]
+visible = false
+position = Vector2(61.74, 199.92)
+scale = Vector2(0.53291, 0.53291)
+texture = ExtResource("5_cifvi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rn2u5")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("6_jvvwm")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-12, 454)
+shape = SubResource("RectangleShape2D_reuip")
+debug_color = Color(0, 0.6, 0.701961, 0.12549)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="trigger_entered" from="Area2D" to="." method="_on_area_2d_trigger_entered"]

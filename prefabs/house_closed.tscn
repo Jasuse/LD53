@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc2le1jh7unal"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_mtjwo"]
+
+[node name="house" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.254902, 0.0392157, 0.129412, 1)
+position = Vector2(15.5, -163.5)
+scale = Vector2(1.37109, 1.85547)
+texture = ExtResource("1_mtjwo")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+modulate = Color(0.972549, 0.701961, 0.654902, 1)
+position = Vector2(130, -334)
+scale = Vector2(0.291016, 0.411514)
+texture = ExtResource("1_mtjwo")
+
+[node name="Door" type="Sprite2D" parent="."]
+modulate = Color(0.313726, 0.2, 0.0313726, 1)
+position = Vector2(2.75, -47.3315)
+scale = Vector2(0.552734, 0.90366)
+texture = ExtResource("1_mtjwo")
+
+[node name="DoorOpened" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.184314, 0.223529, 0.333333, 1)
+position = Vector2(2.75, -47.3315)
+scale = Vector2(0.552734, 0.90366)
+texture = ExtResource("1_mtjwo")
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorOpened"]
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+modulate = Color(0.188235, 0.113725, 0.0117647, 1)
+position = Vector2(1.375, 75)
+scale = Vector2(0.573242, 0.0615603)
+texture = ExtResource("1_mtjwo")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+modulate = Color(0.972549, 0.72549, 0.427451, 1)
+position = Vector2(-93, -325)
+scale = Vector2(0.291016, 0.411514)
+texture = ExtResource("1_mtjwo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.262745, 0.027451, 1)
+position = Vector2(6, -105)
+rotation = 0.523599
+scale = Vector2(1, 0.183594)
+texture = ExtResource("1_mtjwo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.282353, 0.262745, 0.027451, 1)
+position = Vector2(6, -15)
+rotation = 0.261799
+scale = Vector2(1, 0.183594)
+texture = ExtResource("1_mtjwo")

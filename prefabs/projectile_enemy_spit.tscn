@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://12go57iv0x2b"]
+
+[ext_resource type="Script" path="res://scripts/projectile_spit.gd" id="1_3jq28"]
+[ext_resource type="PackedScene" uid="uid://cydabymu18qfy" path="res://prefabs/spit.tscn" id="2_56to3"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="2_t4rb4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1r53"]
+radius = 32.1587
+
+[node name="projectile" type="Area2D"]
+collision_layer = 5
+script = ExtResource("1_3jq28")
+Damage = 30.0
+Lifetime = 2.0
+IgnoreEnemy = true
+SpitPrefab = ExtResource("2_56to3")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.591809, 0.591809)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0.501961, 0.188235, 1)
+scale = Vector2(0.425781, 0.425781)
+texture = ExtResource("2_t4rb4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(0, 0.384314, 0.152941, 1)
+position = Vector2(12, -8)
+scale = Vector2(0.259766, 0.289667)
+texture = ExtResource("2_t4rb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(0.996995, 1)
+shape = SubResource("CircleShape2D_b1r53")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

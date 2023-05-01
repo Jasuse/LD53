@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2rya78c3u5xi"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wldt8"]
+[ext_resource type="Texture2D" uid="uid://c851xleo2aok6" path="res://textures/enemybody.png" id="2_l50jb"]
+[ext_resource type="PackedScene" uid="uid://7f8rvj1peea2" path="res://prefabs/deathpuddle.tscn" id="2_rvecm"]
+[ext_resource type="Texture2D" uid="uid://cj5cwe70bd8lw" path="res://textures/enemymouth.png" id="3_x3ojp"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="4_rylpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvxwv"]
+size = Vector2(105.539, 18.5017)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.02516, 1.02516)
+collision_layer = 32769
+collision_mask = 0
+script = ExtResource("1_wldt8")
+DeathPuddle = ExtResource("2_rvecm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.292634, 0.295965)
+texture = ExtResource("2_l50jb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(6.2082, 17.383)
+scale = Vector2(0.235632, 0.235632)
+texture = ExtResource("3_x3ojp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0.62082, 83.7493)
+shape = SubResource("RectangleShape2D_yvxwv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(0, 79.0121)
+scale = Vector2(0.648604, 0.130662)
+texture = ExtResource("4_rylpv")

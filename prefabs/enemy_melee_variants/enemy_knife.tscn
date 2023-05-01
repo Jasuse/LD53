@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://i8vd1ylpgvn1"]
+
+[ext_resource type="PackedScene" uid="uid://c2rya78c3u5xi" path="res://prefabs/enemy.tscn" id="1_vn7wm"]
+[ext_resource type="Texture2D" uid="uid://k8mx5606fjur" path="res://textures/knife.png" id="2_mdg20"]
+
+[node name="enemy" instance=ExtResource("1_vn7wm")]
+Speed = 400.0
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="4"]
+position = Vector2(-60.4784, 18.5337)
+scale = Vector2(0.516277, 0.516277)
+texture = ExtResource("2_mdg20")
