@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8c0ph7bpnmgr"]
+
+[ext_resource type="Script" path="res://scripts/hint.gd" id="1_wx1oc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fsoy"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 0.176471)
+
+[node name="howtoplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wx1oc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fsoy")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = 119.0
+offset_right = 136.5
+offset_bottom = 189.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "How to play"
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = 568.0
+offset_right = 136.5
+offset_bottom = 638.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Press space to play"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -491.0
+offset_top = 244.0
+offset_right = -218.0
+offset_bottom = 314.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Arrow keys - move
+Spacebar - shoot
+Z,X,C - abilities"
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -458.0
+offset_top = 535.0
+offset_right = -92.0
+offset_bottom = 583.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Come to door to knock"

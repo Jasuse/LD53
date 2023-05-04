@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cc8a4k2ppj247"
+path="res://.godot/imported/heavy_footstep1 .ogg-a107ba38b5bd27ac691e8ef5507684cf.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/player/heavy_footstep1 .ogg"
+dest_files=["res://.godot/imported/heavy_footstep1 .ogg-a107ba38b5bd27ac691e8ef5507684cf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

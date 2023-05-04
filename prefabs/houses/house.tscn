@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1q5uiovyvj5k"]
+[gd_scene load_steps=14 format=3 uid="uid://c1q5uiovyvj5k"]
 
 [ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_bds1c"]
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_xne8m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://kjoy3utaab53" path="res://textures/enemy.png" id="3_7dod7"]
 [ext_resource type="Texture2D" uid="uid://ds6cgufgkwxyk" path="res://textures/package.png" id="4_popi0"]
 [ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="6_eaxjd"]
+[ext_resource type="AudioStream" uid="uid://c8ahkgbwaxurc" path="res://sounds/intro/popping-out.mp3" id="7_2hey7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nghx4"]
 size = Vector2(158, 50.25)
@@ -481,6 +482,10 @@ offset_right = -28.0
 offset_bottom = -151.0
 rotation = 0.523599
 text = "*SHUT*"
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2hey7")
+volume_db = -5.0
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

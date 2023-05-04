@@ -16,9 +16,6 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d45yb"]
 bg_color = Color(0.639216, 0, 0.176471, 1)
-border_width_right = 8
-border_color = Color(0.364706, 0, 0, 1)
-border_blend = true
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -95,6 +92,7 @@ texture = ExtResource("2_7a48l")
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
 clip_children = 2
+layout_mode = 0
 offset_left = 3.66732
 offset_top = 3.66732
 offset_right = 259.667
@@ -113,6 +111,7 @@ scale = Vector2(0.243462, 0.243462)
 texture = ExtResource("3_h04cc")
 
 [node name="TextureRect2" type="TextureRect" parent="TextureRect/TextureRect/TextureRect2"]
+layout_mode = 0
 offset_left = 392.0
 offset_top = 435.0
 offset_right = 492.0
@@ -122,6 +121,7 @@ texture = ExtResource("4_mgyvf")
 stretch_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="TextureRect/TextureRect/TextureRect2"]
+layout_mode = 0
 offset_left = 659.0
 offset_top = 429.0
 offset_right = 759.0
@@ -131,6 +131,7 @@ texture = ExtResource("4_mgyvf")
 stretch_mode = 2
 
 [node name="TextureRect4" type="TextureRect" parent="TextureRect/TextureRect/TextureRect2"]
+layout_mode = 0
 offset_left = 553.0
 offset_top = 567.0
 offset_right = 653.0
@@ -140,10 +141,11 @@ texture = ExtResource("5_07y75")
 stretch_mode = 2
 
 [node name="TextureRect5" type="TextureRect" parent="TextureRect/TextureRect/TextureRect2"]
-offset_left = 462.0
-offset_top = 753.0
-offset_right = 562.0
-offset_bottom = 853.0
+layout_mode = 0
+offset_left = 481.888
+offset_top = 672.75
+offset_right = 581.888
+offset_bottom = 772.75
 scale = Vector2(1.76489, 1.76489)
 texture = ExtResource("6_p5ufl")
 stretch_mode = 2

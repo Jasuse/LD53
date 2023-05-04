@@ -1,0 +1,305 @@
+[gd_scene load_steps=24 format=3 uid="uid://dqpucjc2eveu2"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_m8l5k"]
+[ext_resource type="Script" path="res://scripts/camera_mover.gd" id="2_f8fy1"]
+[ext_resource type="Script" path="res://scripts/enemy_area.gd" id="3_fgjgx"]
+[ext_resource type="PackedScene" uid="uid://dxfbuxuijte7h" path="res://prefabs/enemy_melee_variants/enemy_bat.tscn" id="4_mijts"]
+[ext_resource type="PackedScene" uid="uid://i8vd1ylpgvn1" path="res://prefabs/enemy_melee_variants/enemy_knife.tscn" id="5_hlqa7"]
+[ext_resource type="PackedScene" uid="uid://cgofhrw5xbqua" path="res://prefabs/enemy_shooter.tscn" id="5_nt85x"]
+[ext_resource type="PackedScene" uid="uid://b88grov6pqmiy" path="res://prefabs/houses/green_house_1.tscn" id="7_nvt63"]
+[ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="8_54tep"]
+[ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="9_0w6mk"]
+[ext_resource type="PackedScene" uid="uid://d0ar3gvixwvni" path="res://prefabs/houses/house_gen_2.tscn" id="11_m4xt2"]
+[ext_resource type="PackedScene" uid="uid://by8gywbpsil1j" path="res://prefabs/houses/red_house_1.tscn" id="12_8tc3u"]
+[ext_resource type="PackedScene" uid="uid://dtr53nb1ycc7g" path="res://prefabs/HUD.tscn" id="12_mgyf2"]
+[ext_resource type="PackedScene" uid="uid://droerik2hukoa" path="res://prefabs/houses/red_house_2.tscn" id="13_8eyfs"]
+[ext_resource type="PackedScene" uid="uid://dj3hekmidmnw2" path="res://prefabs/death_screen.tscn" id="13_ku74p"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="14_27jsi"]
+[ext_resource type="PackedScene" uid="uid://cwcu0tvvinbkd" path="res://scenes/scene5.tscn" id="15_c5tt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75eto"]
+size = Vector2(207, 478)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wbvrf"]
+normal = Vector2(0.999742, -0.0227214)
+distance = 181.003
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tysb"]
+normal = Vector2(-1, 0)
+distance = 36.2353
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nnbnm"]
+normal = Vector2(0, 1)
+distance = 111.018
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o747g"]
+normal = Vector2(0.00613485, -0.999981)
+distance = 128.016
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x143r"]
+size = Vector2(235.5, 482.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdles"]
+size = Vector2(407.5, 695)
+
+[node name="scene3" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Floor2" type="Sprite2D" parent="."]
+modulate = Color(0.262745, 0.45098, 0.227451, 1)
+z_index = -2
+position = Vector2(599.499, 271)
+scale = Vector2(16.0352, 1.87625)
+texture = ExtResource("1_m8l5k")
+
+[node name="Floor3" type="Sprite2D" parent="."]
+modulate = Color(0.729412, 0, 0.32549, 1)
+z_index = -2
+position = Vector2(4669, 271)
+scale = Vector2(16.0352, 1.87625)
+texture = ExtResource("1_m8l5k")
+
+[node name="Part1" type="Node2D" parent="."]
+
+[node name="CameraMover" type="Node2D" parent="Part1" node_paths=PackedStringArray("camera")]
+position = Vector2(787, -12)
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+
+[node name="EnemySpawnTrigger2" type="Area2D" parent="Part1" node_paths=PackedStringArray("Enemies_Parent")]
+position = Vector2(1415, 17)
+script = ExtResource("3_fgjgx")
+Enemies_Parent = NodePath("Enemies")
+EnemiesPrefab = Array[PackedScene]([ExtResource("4_mijts"), ExtResource("5_hlqa7")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part1/EnemySpawnTrigger2"]
+position = Vector2(-114, 252)
+shape = SubResource("RectangleShape2D_75eto")
+
+[node name="Enemies" type="Node" parent="Part1/EnemySpawnTrigger2"]
+
+[node name="Node2D" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(3001, 113)
+
+[node name="Node2D2" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(2781, 197)
+
+[node name="Node2D3" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(3015, 445)
+
+[node name="Node2D4" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(2783, 287)
+
+[node name="Node2D5" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(-520, 48)
+
+[node name="Node2D6" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(-508, 232)
+
+[node name="Node2D7" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(-506, 380)
+
+[node name="Node2D8" type="Node2D" parent="Part1/EnemySpawnTrigger2/Enemies"]
+position = Vector2(-738, 222)
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(123, 11)
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+
+[node name="LeftBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(-349, 0)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/LeftBorder"]
+position = Vector2(-846, -4)
+shape = SubResource("WorldBoundaryShape2D_wbvrf")
+
+[node name="RightBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(300, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/RightBorder"]
+position = Vector2(620.511, -6)
+shape = SubResource("WorldBoundaryShape2D_3tysb")
+
+[node name="player" parent="." instance=ExtResource("8_54tep")]
+position = Vector2(-425, 219)
+collision_mask = 13
+MaxHealth = 150.0
+Health = 150.0
+
+[node name="UpBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, -173)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_nnbnm")
+
+[node name="DownBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, 558)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_o747g")
+
+[node name="Part2" type="Node2D" parent="."]
+position = Vector2(2245, 0)
+
+[node name="CameraMover2" type="Node2D" parent="Part2" node_paths=PackedStringArray("camera")]
+position = Vector2(-518, -79)
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="CameraMover3" type="Node2D" parent="Part2" node_paths=PackedStringArray("camera")]
+position = Vector2(581, -112)
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="EnemySpawnTrigger2" type="Area2D" parent="Part2" node_paths=PackedStringArray("Enemies_Parent")]
+position = Vector2(1415, 17)
+script = ExtResource("3_fgjgx")
+Enemies_Parent = NodePath("Enemies")
+EnemiesPrefab = Array[PackedScene]([ExtResource("5_nt85x")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part2/EnemySpawnTrigger2"]
+position = Vector2(-849, 219)
+shape = SubResource("RectangleShape2D_75eto")
+
+[node name="Enemies" type="Node" parent="Part2/EnemySpawnTrigger2"]
+
+[node name="Node2D" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(3948, 110)
+
+[node name="Node2D2" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(3967, 222)
+
+[node name="Node2D3" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(3970, 406)
+
+[node name="Node2D4" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(598, 86)
+
+[node name="Node2D5" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(617, 198)
+
+[node name="Node2D6" type="Node2D" parent="Part2/EnemySpawnTrigger2/Enemies"]
+position = Vector2(620, 382)
+
+[node name="Part3" type="Node2D" parent="."]
+position = Vector2(3496, -2)
+
+[node name="CameraControlArea2" type="Area2D" parent="Part3"]
+position = Vector2(67, 25)
+script = ExtResource("9_0w6mk")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part3/CameraControlArea2"]
+position = Vector2(854, 239)
+shape = SubResource("RectangleShape2D_x143r")
+
+[node name="CameraMover2" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(162, -93)
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="CameraMover3" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(1583, -102)
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="CameraMover4" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(2265, -109)
+rotation = 4.71238
+script = ExtResource("2_f8fy1")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Part3"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 7
+position = Vector2(3077, -229)
+scale = Vector2(2.78547, 5.72)
+texture = ExtResource("1_m8l5k")
+
+[node name="EnemySpawnTrigger2" type="Area2D" parent="Part3" node_paths=PackedStringArray("Enemies_Parent")]
+position = Vector2(1415, 17)
+script = ExtResource("3_fgjgx")
+Enemies_Parent = NodePath("Enemies")
+EnemiesPrefab = Array[PackedScene]([ExtResource("5_nt85x"), ExtResource("4_mijts")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part3/EnemySpawnTrigger2"]
+position = Vector2(-487, 257)
+shape = SubResource("RectangleShape2D_75eto")
+
+[node name="Enemies" type="Node" parent="Part3/EnemySpawnTrigger2"]
+
+[node name="Node2D" type="Node2D" parent="Part3/EnemySpawnTrigger2/Enemies"]
+position = Vector2(6046, 91)
+
+[node name="Node2D2" type="Node2D" parent="Part3/EnemySpawnTrigger2/Enemies"]
+position = Vector2(6065, 203)
+
+[node name="Node2D3" type="Node2D" parent="Part3/EnemySpawnTrigger2/Enemies"]
+position = Vector2(6068, 387)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_mgyf2")]
+metadata/_edit_use_anchors_ = true
+
+[node name="death_screen" parent="CanvasLayer" instance=ExtResource("13_ku74p")]
+visible = false
+
+[node name="house_gen_2" parent="." instance=ExtResource("11_m4xt2")]
+position = Vector2(319, -546)
+
+[node name="red_house_1" parent="." instance=ExtResource("12_8tc3u")]
+z_index = -2
+position = Vector2(3447, -307)
+
+[node name="red_house_2" parent="." instance=ExtResource("13_8eyfs")]
+position = Vector2(4877, -758)
+scale = Vector2(1.99706, 1.99697)
+ShouldTrigger = false
+
+[node name="house_gen_1" parent="." instance=ExtResource("7_nvt63")]
+position = Vector2(1916, -314)
+ShouldTrigger = false
+
+[node name="SwitchArea" type="Area2D" parent="."]
+position = Vector2(4166, 426)
+script = ExtResource("9_0w6mk")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchArea"]
+position = Vector2(2440, -398)
+shape = SubResource("RectangleShape2D_sdles")
+
+[node name="Node" type="Node" parent="SwitchArea"]
+script = ExtResource("14_27jsi")
+Scene = ExtResource("15_c5tt2")
+
+[connection signal="body_entered" from="Part1/EnemySpawnTrigger2" to="Part1/EnemySpawnTrigger2" method="_on_body_entered"]
+[connection signal="enemies_dead" from="Part1/EnemySpawnTrigger2" to="house_gen_1" method="_enable_triggering"]
+[connection signal="health_changed" from="player" to="CanvasLayer/HUD" method="health_changed"]
+[connection signal="player_died" from="player" to="CanvasLayer/death_screen" method="player_died"]
+[connection signal="body_entered" from="Part2/EnemySpawnTrigger2" to="Part2/EnemySpawnTrigger2" method="_on_body_entered"]
+[connection signal="body_entered" from="Part3/CameraControlArea2" to="Part3/CameraControlArea2" method="_on_body_entered"]
+[connection signal="body_exited" from="Part3/CameraControlArea2" to="Part3/CameraControlArea2" method="_on_body_exited"]
+[connection signal="trigger_entered" from="Part3/CameraControlArea2" to="Part3/CameraMover3" method="do_anim"]
+[connection signal="body_entered" from="Part3/EnemySpawnTrigger2" to="Part3/EnemySpawnTrigger2" method="_on_body_entered"]
+[connection signal="enemies_dead" from="Part3/EnemySpawnTrigger2" to="red_house_2" method="_enable_triggering"]
+[connection signal="ended_sequence" from="house_gen_2" to="Part2/CameraMover2" method="do_anim"]
+[connection signal="ended_sequence" from="red_house_1" to="Part3/CameraMover2" method="do_anim"]
+[connection signal="ended_sequence" from="red_house_2" to="Part3/CameraMover4" method="do_anim"]
+[connection signal="ended_sequence" from="house_gen_1" to="Part2/CameraMover3" method="do_anim"]
+[connection signal="body_entered" from="SwitchArea" to="SwitchArea" method="_on_body_entered"]
+[connection signal="trigger_entered" from="SwitchArea" to="SwitchArea/Node" method="switch_area"]

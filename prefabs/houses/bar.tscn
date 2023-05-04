@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp16a28e2dpjq"]
+[gd_scene load_steps=14 format=3 uid="uid://dp16a28e2dpjq"]
 
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_ui1wu"]
 [ext_resource type="Texture2D" uid="uid://dfg5jy02ew45k" path="res://textures/houses/g21802.png" id="2_gx82s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://kjoy3utaab53" path="res://textures/enemy.png" id="4_1g18v"]
 [ext_resource type="Texture2D" uid="uid://ds6cgufgkwxyk" path="res://textures/package.png" id="5_cifvi"]
 [ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="6_jvvwm"]
+[ext_resource type="AudioStream" uid="uid://c8ahkgbwaxurc" path="res://sounds/intro/popping-out.mp3" id="7_3ey7k"]
 
 [sub_resource type="Animation" id="Animation_1xyl1"]
 length = 0.001
@@ -40,6 +41,18 @@ tracks/2/path = NodePath("DoorOpened/Monster3:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorOpened/Monster2/Package1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -111,6 +124,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DoorOpened/Monster2/Package1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vin2r"]
 resource_name = "package_accept"
@@ -134,11 +159,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.7, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [false],
 "method": &"make_player_offer"
+}, {
+"args": [],
+"method": &"make_player_reset"
 }, {
 "args": [],
 "method": &"enable_player_animtree"
@@ -261,6 +289,7 @@ _data = {
 size = Vector2(312, 50.25)
 
 [node name="bar" type="Node2D"]
+z_index = -1
 script = ExtResource("1_ui1wu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -310,6 +339,10 @@ ShouldTrigger = true
 position = Vector2(-12, 454)
 shape = SubResource("RectangleShape2D_reuip")
 debug_color = Color(0, 0.6, 0.701961, 0.12549)
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3ey7k")
+volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

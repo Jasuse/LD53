@@ -1,0 +1,1051 @@
+[gd_scene load_steps=39 format=3 uid="uid://cs2adxu2t7fhw"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_8mdm8"]
+[ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="2_1lk6t"]
+[ext_resource type="PackedScene" uid="uid://dtr53nb1ycc7g" path="res://prefabs/HUD.tscn" id="3_okfor"]
+[ext_resource type="PackedScene" uid="uid://dj3hekmidmnw2" path="res://prefabs/death_screen.tscn" id="4_r1qvc"]
+[ext_resource type="PackedScene" uid="uid://ndn4o7lxu21t" path="res://prefabs/power_up.tscn" id="5_jsdey"]
+[ext_resource type="PackedScene" uid="uid://drdl8egqe6po3" path="res://prefabs/heavyboots.tscn" id="5_om4mu"]
+[ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="6_yqups"]
+[ext_resource type="Script" path="res://scripts/camera_mover.gd" id="7_6fg4a"]
+[ext_resource type="Script" path="res://scripts/enemy_area.gd" id="8_h0e3h"]
+[ext_resource type="PackedScene" uid="uid://dxfbuxuijte7h" path="res://prefabs/enemy_melee_variants/enemy_bat.tscn" id="9_0abec"]
+[ext_resource type="PackedScene" uid="uid://cgofhrw5xbqua" path="res://prefabs/enemy_shooter.tscn" id="10_lxdpl"]
+[ext_resource type="Texture2D" uid="uid://c7tiu651w8fxd" path="res://textures/houses/g34612.png" id="11_x2h6s"]
+[ext_resource type="Texture2D" uid="uid://c7c8dme0qx818" path="res://textures/houses/g34534.png" id="12_01g2s"]
+[ext_resource type="Texture2D" uid="uid://dttawc3jhgw2f" path="res://textures/houses/g34582.png" id="13_8vchx"]
+[ext_resource type="Texture2D" uid="uid://dr5x0lhjlwgdx" path="res://textures/houses/g28867.png" id="13_bp67b"]
+[ext_resource type="Texture2D" uid="uid://bqkib12pvmf68" path="res://textures/houses/g16685.png" id="14_p8haq"]
+[ext_resource type="Texture2D" uid="uid://cfqjvksdmsak7" path="res://textures/monster_suit.png" id="16_1qlye"]
+[ext_resource type="Texture2D" uid="uid://lj0l3a5aakgr" path="res://textures/player/money.png" id="17_0rapy"]
+[ext_resource type="Script" path="res://scripts/last_sequence_player.gd" id="18_g6gdk"]
+[ext_resource type="Texture2D" uid="uid://dtt62ac73bjeg" path="res://textures/monster_special.png" id="18_wgtgv"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="19_kcmva"]
+[ext_resource type="Texture2D" uid="uid://coaj7f5wf0f5y" path="res://textures/hand.png" id="21_t6x77"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="22_ddlnn"]
+[ext_resource type="PackedScene" uid="uid://nbkxt83h3udi" path="res://scenes/scene_credits.tscn" id="23_3k5aw"]
+[ext_resource type="AudioStream" uid="uid://cyx34j5ckl6wu" path="res://sounds/player/offer_in.mp3" id="25_m141r"]
+[ext_resource type="AudioStream" uid="uid://io032cja66m" path="res://sounds/player/offer_out.mp3" id="26_c5iv1"]
+[ext_resource type="AudioStream" uid="uid://dahaoeb86gdtw" path="res://sounds/player/footstep1 .mp3" id="27_uvmju"]
+[ext_resource type="AudioStream" uid="uid://b2i4kmg4jcxt6" path="res://sounds/player/footstep2.mp3" id="28_1gggt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wbvrf"]
+normal = Vector2(0.999742, -0.0227214)
+distance = 181.003
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tysb"]
+normal = Vector2(-1, 0)
+distance = 36.2353
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nnbnm"]
+normal = Vector2(0, 1)
+distance = 111.018
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o747g"]
+normal = Vector2(0.00613485, -0.999981)
+distance = 128.016
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upjv7"]
+size = Vector2(235.5, 482.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r57gn"]
+size = Vector2(207, 478)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mulw"]
+size = Vector2(168, 490)
+
+[sub_resource type="Animation" id="Animation_43t14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterSuit/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterSuit:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6599, 61)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterSuit:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MonsterSuit:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MonsterSpecial:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterSpecial2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterSpecial2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3803.83, 117.927)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MonsterSpecial2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MonsterSpecial:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4132.83, -124.073)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MonsterSpecial:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MonsterSpecial/Shadow:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40.5964, 730.74)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MonsterSpecial/Shadow:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MonsterSpecial/HandPolygon:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MonsterSpecial2/HandPolygon:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MonsterSpecial:flip_h")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MonsterSpecial2:flip_h")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jo57e"]
+resource_name = "sequence"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonsterSuit/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MonsterSuit:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.8, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6599, 61), Vector2(6599, 61), Vector2(6599, 61), Vector2(8521, 135)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonsterSuit:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1, 1.8, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MonsterSuit:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MonsterSpecial:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MonsterSpecial2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MonsterSpecial2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.3, 3.7, 3.9, 4.7, 7.1, 8.1, 8.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3803.83, 117.927), Vector2(3803.83, 117.927), Vector2(4850, 140), Vector2(4850, 140), Vector2(4850, 140), Vector2(4850, 140), Vector2(3802, 136)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MonsterSpecial2:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.3, 3.7, 3.9, 4.7, 7.1, 8.1, 8.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MonsterSpecial:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3.3, 3.7, 3.9, 4.5, 5, 6, 6.9, 7.5, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4132.83, -124.073), Vector2(5059, -54), Vector2(5174.08, -53.6923), Vector2(5174.08, -53.6923), Vector2(5174.08, -53.6923), Vector2(5174.08, -53.6923), Vector2(5807, -52), Vector2(5807, -52), Vector2(3811, -29)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("MonsterSpecial:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3.3, 3.7, 3.9, 4.5, 5, 6.9, 7.5, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MonsterSpecial/Shadow:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40.5964, 730.74)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MonsterSpecial/Shadow:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MonsterSpecial/HandPolygon:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 4.8, 6.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MonsterSpecial2/HandPolygon:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 4.8, 8.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MonsterSpecial:flip_h")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 6.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MonsterSpecial2:flip_h")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(3.9, 8.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("player")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(7.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("MonsterSpecial")],
+"method": &"get_grabbed"
+}]
+}
+tracks/17/type = "method"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SceneSwitcher")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(9.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"switch_area"
+}]
+}
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("offer_in")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("offer_out")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(1.1, 7.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/20/type = "method"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("footstep_1")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(1.8, 2, 2.2, 3.5, 3.7, 3.87, 4, 5.9, 6.1, 6.4, 6.7, 7.6, 7.8, 8.1, 8.4, 8.5, 8.7, 9, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/21/type = "method"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("footstep_2")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(1.9, 2.1, 3.6, 3.8, 4, 6, 6.3, 6.6, 7.7, 8, 8.3, 8.6, 8.9, 9.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vil1l"]
+_data = {
+"RESET": SubResource("Animation_43t14"),
+"sequence": SubResource("Animation_jo57e")
+}
+
+[node name="scene3" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Floor3" type="Sprite2D" parent="."]
+modulate = Color(0.329412, 0, 0.129412, 1)
+z_index = -2
+position = Vector2(3249, 271)
+scale = Vector2(34.0625, 1.87625)
+texture = ExtResource("1_8mdm8")
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(145, 72)
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+
+[node name="LeftBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(-349, 0)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/LeftBorder"]
+position = Vector2(-846, -4)
+shape = SubResource("WorldBoundaryShape2D_wbvrf")
+
+[node name="RightBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(300, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/RightBorder"]
+position = Vector2(620.511, -6)
+shape = SubResource("WorldBoundaryShape2D_3tysb")
+
+[node name="player" parent="." instance=ExtResource("2_1lk6t")]
+position = Vector2(-403, 277)
+collision_mask = 12
+MaxHealth = 150.0
+Health = 150.0
+
+[node name="UpBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, -173)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_nnbnm")
+
+[node name="DownBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, 558)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_o747g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("3_okfor")]
+metadata/_edit_use_anchors_ = true
+
+[node name="death_screen" parent="CanvasLayer" instance=ExtResource("4_r1qvc")]
+visible = false
+
+[node name="howtoplay" parent="CanvasLayer" instance=ExtResource("5_om4mu")]
+
+[node name="power_up" parent="." instance=ExtResource("5_jsdey")]
+position = Vector2(-172, 249)
+
+[node name="CameraControlArea2" type="Area2D" parent="."]
+position = Vector2(67, 25)
+script = ExtResource("6_yqups")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraControlArea2"]
+position = Vector2(854, 239)
+shape = SubResource("RectangleShape2D_upjv7")
+
+[node name="CameraMover" type="Node2D" parent="CameraControlArea2" node_paths=PackedStringArray("camera")]
+position = Vector2(1819, -62)
+script = ExtResource("7_6fg4a")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 2.0
+
+[node name="CameraControlArea3" type="Area2D" parent="."]
+position = Vector2(2415, 25)
+script = ExtResource("6_yqups")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraControlArea3"]
+position = Vector2(854, 239)
+shape = SubResource("RectangleShape2D_upjv7")
+
+[node name="CameraMover" type="Node2D" parent="CameraControlArea3" node_paths=PackedStringArray("camera")]
+position = Vector2(1819, -62)
+script = ExtResource("7_6fg4a")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 2.0
+
+[node name="EnemySpawnTrigger2" type="Area2D" parent="." node_paths=PackedStringArray("Enemies_Parent")]
+position = Vector2(1985, 9)
+script = ExtResource("8_h0e3h")
+Enemies_Parent = NodePath("Enemies")
+EnemiesPrefab = Array[PackedScene]([ExtResource("9_0abec"), ExtResource("10_lxdpl")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnTrigger2"]
+position = Vector2(-114, 252)
+shape = SubResource("RectangleShape2D_r57gn")
+
+[node name="Enemies" type="Node" parent="EnemySpawnTrigger2"]
+
+[node name="Node2D" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3152, 56)
+
+[node name="Node2D2" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3164, 240)
+
+[node name="Node2D3" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3166, 388)
+
+[node name="Node2D4" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(2934, 230)
+
+[node name="Node2D5" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3583, 84)
+
+[node name="Node2D6" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3595, 268)
+
+[node name="Node2D7" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3597, 416)
+
+[node name="Node2D8" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(3365, 258)
+
+[node name="Node2D9" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-289, 65)
+
+[node name="Node2D10" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-2103, 294)
+
+[node name="Node2D11" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-2101, 442)
+
+[node name="Node2D12" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-2333, 284)
+
+[node name="Node2D13" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1684, 138)
+
+[node name="Node2D14" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1672, 322)
+
+[node name="Node2D15" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1670, 470)
+
+[node name="Node2D16" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1902, 312)
+
+[node name="Node2D17" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1767, 59)
+
+[node name="Node2D18" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1755, 243)
+
+[node name="Node2D19" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1753, 391)
+
+[node name="Node2D20" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1985, 233)
+
+[node name="Node2D21" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1336, 87)
+
+[node name="Node2D22" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1324, 271)
+
+[node name="Node2D23" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1322, 419)
+
+[node name="Node2D24" type="Node2D" parent="EnemySpawnTrigger2/Enemies"]
+position = Vector2(-1554, 261)
+
+[node name="CameraMover" type="Node2D" parent="EnemySpawnTrigger2" node_paths=PackedStringArray("camera")]
+position = Vector2(1249, -71)
+script = ExtResource("7_6fg4a")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 2.0
+
+[node name="EnemySpawnTrigger3" type="Area2D" parent="." node_paths=PackedStringArray("Enemies_Parent")]
+position = Vector2(4761, 17)
+script = ExtResource("8_h0e3h")
+Enemies_Parent = NodePath("Enemies")
+EnemiesPrefab = Array[PackedScene]([ExtResource("9_0abec"), ExtResource("10_lxdpl")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnTrigger3"]
+position = Vector2(-114, 252)
+shape = SubResource("RectangleShape2D_r57gn")
+
+[node name="Enemies" type="Node" parent="EnemySpawnTrigger3"]
+
+[node name="Node2D" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2618, 90)
+
+[node name="Node2D2" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2630, 274)
+
+[node name="Node2D3" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2632, 422)
+
+[node name="Node2D4" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2400, 264)
+
+[node name="Node2D5" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(3049, 118)
+
+[node name="Node2D6" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(3061, 302)
+
+[node name="Node2D7" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2546, 139)
+
+[node name="Node2D8" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2558, 323)
+
+[node name="Node2D9" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2560, 471)
+
+[node name="Node2D10" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2328, 313)
+
+[node name="Node2D11" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2977, 167)
+
+[node name="Node2D12" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2989, 351)
+
+[node name="Node2D13" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2565, 48)
+
+[node name="Node2D14" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2577, 232)
+
+[node name="Node2D15" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2579, 380)
+
+[node name="Node2D16" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2347, 222)
+
+[node name="Node2D17" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(2996, 76)
+
+[node name="Node2D18" type="Node2D" parent="EnemySpawnTrigger3/Enemies"]
+position = Vector2(3008, 260)
+
+[node name="CameraMover" type="Node2D" parent="EnemySpawnTrigger3" node_paths=PackedStringArray("camera")]
+position = Vector2(1249, -71)
+script = ExtResource("7_6fg4a")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 2.0
+
+[node name="G34612" type="Sprite2D" parent="."]
+self_modulate = Color(0.164706, 0.164706, 0.164706, 1)
+position = Vector2(2350, -352)
+scale = Vector2(0.166073, 0.166073)
+texture = ExtResource("11_x2h6s")
+
+[node name="G34618" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(3051.18, -143.702)
+scale = Vector2(0.0498261, 0.0498261)
+texture = ExtResource("13_bp67b")
+
+[node name="G34619" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(2912.18, -140.702)
+scale = Vector2(0.0498261, 0.0498261)
+texture = ExtResource("13_bp67b")
+
+[node name="G34620" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(3208.18, -143.702)
+scale = Vector2(0.0498261, 0.0498261)
+texture = ExtResource("14_p8haq")
+
+[node name="G34616" type="Sprite2D" parent="."]
+self_modulate = Color(0.239216, 0.239216, 0.239216, 1)
+position = Vector2(1877, -325)
+scale = Vector2(0.362249, 0.362249)
+texture = ExtResource("12_01g2s")
+
+[node name="G34617" type="Sprite2D" parent="."]
+self_modulate = Color(0.239216, 0.239216, 0.239216, 1)
+position = Vector2(3819, -311)
+scale = Vector2(0.234316, 0.234316)
+texture = ExtResource("12_01g2s")
+
+[node name="G34614" type="Sprite2D" parent="."]
+self_modulate = Color(0.192157, 0.192157, 0.192157, 1)
+position = Vector2(4414, -450)
+scale = Vector2(0.149818, 0.149818)
+texture = ExtResource("11_x2h6s")
+
+[node name="G34615" type="Sprite2D" parent="."]
+self_modulate = Color(0.12549, 0.12549, 0.12549, 1)
+position = Vector2(5555, -449)
+scale = Vector2(0.517359, 0.517359)
+texture = ExtResource("13_8vchx")
+
+[node name="MonsterSuit" type="Sprite2D" parent="."]
+position = Vector2(6599, 61)
+texture = ExtResource("16_1qlye")
+
+[node name="Sprite2D" type="Sprite2D" parent="MonsterSuit"]
+visible = false
+position = Vector2(-187, 168)
+texture = ExtResource("17_0rapy")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(6071, 206)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(74, 61)
+shape = SubResource("RectangleShape2D_0mulw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vil1l")
+}
+script = ExtResource("18_g6gdk")
+
+[node name="MonsterSpecial" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(4132.83, -124.073)
+scale = Vector2(0.445131, 0.445131)
+texture = ExtResource("18_wgtgv")
+flip_h = true
+
+[node name="Shadow" type="Sprite2D" parent="MonsterSpecial"]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(40.5964, 730.74)
+scale = Vector2(4.66504, 0.130662)
+texture = ExtResource("19_kcmva")
+
+[node name="HandPolygon" type="Polygon2D" parent="MonsterSpecial"]
+visible = false
+position = Vector2(-62.9033, -74.1355)
+scale = Vector2(4.84987, 4.84987)
+texture = ExtResource("21_t6x77")
+skeleton = NodePath("../HandSkeleton")
+polygon = PackedVector2Array(-2.55101, 61.2245, 118.717, 59.18, 116.399, 48.6631, 120.856, 43.3155, 129.947, 42.6025, 137.077, 42.7808, 144.742, 16.934, 142.781, 2.6738, 149.554, 1.06952, 156.328, 3.0303, 165.597, 10.6952, 168.449, 27.9857, 167.914, 36.3636, 205.526, 33.8681, 224.064, 35.1159, 230.66, 35.2941, 232.264, 39.5722, 230.838, 45.9893, 228.699, 49.7326, 225.134, 50.6239, 215.686, 50.9804, 206.061, 51.6934, 197.861, 51.6934, 195.544, 61.3191, 193.226, 75.7576, 189.127, 80.3922, 170.232, 85.3832, 144.029, 80.2139, 122.46, 71.6578, 122.46, 65.9537, -3.56506, 68.6275, 25.9205, 63.9175, 61.2666, 63.623, 95.5817, 63.3284, 8.9838, 64.2121, 42.268, 64.2121, 78.9396, 62.8866, 107.953, 63.4757, 33.455, 60.7056, 70.073, 59.7324, 33.5766, 67.5182, 70.438, 66.6667, 89.781, 59.3674, 89.1727, 66.18, 103.406, 59.2457, 103.406, 66.3017, 123.139, 52.9175, 131.992, 68.9135, 135.316, 48.4904, 144.099, 32.9369, 147.575, 5.48948, 156.45, 10.3385, 160.567, 21.226, 160.815, 32.4459, 146.339, 72.629, 167.221, 76.1231, 180.948, 67.6373, 189.517, 57.9867, 202.995, 47.5874, 211.148, 46.589, 221.131, 46.589, 229.867, 42.4293, 212.895, 36.3561, 182.529, 39.1847)
+uv = PackedVector2Array(-2.55101, 61.2245, 118.717, 59.18, 116.399, 48.6631, 120.856, 43.3155, 129.947, 42.6025, 137.077, 42.7808, 144.742, 16.934, 142.781, 2.6738, 149.554, 1.06952, 156.328, 3.0303, 165.597, 10.6952, 168.449, 27.9857, 167.914, 36.3636, 205.526, 33.8681, 224.064, 35.1159, 230.66, 35.2941, 232.264, 39.5722, 230.838, 45.9893, 228.699, 49.7326, 225.134, 50.6239, 215.686, 50.9804, 206.061, 51.6934, 197.861, 51.6934, 195.544, 61.3191, 193.226, 75.7576, 189.127, 80.3922, 170.232, 85.3832, 144.029, 80.2139, 122.46, 71.6578, 122.46, 65.9537, -3.56506, 68.6275, 25.9205, 63.9175, 61.2666, 63.623, 95.5817, 63.3284, 8.9838, 64.2121, 42.268, 64.2121, 78.9396, 62.8866, 107.953, 63.4757, 33.455, 60.7056, 70.073, 59.7324, 33.5766, 67.5182, 70.438, 66.6667, 89.781, 59.3674, 89.1727, 66.18, 103.406, 59.2457, 103.406, 66.3017, 123.139, 52.9175, 131.992, 68.9135, 135.316, 48.4904, 144.099, 32.9369, 147.575, 5.48948, 156.45, 10.3385, 160.567, 21.226, 160.815, 32.4459, 146.339, 72.629, 167.221, 76.1231, 180.948, 67.6373, 189.517, 57.9867, 202.995, 47.5874, 211.148, 46.589, 221.131, 46.589, 229.867, 42.4293, 212.895, 36.3561, 182.529, 39.1847)
+polygons = [PackedInt32Array(0, 34, 30), PackedInt32Array(34, 38, 0), PackedInt32Array(30, 34, 40), PackedInt32Array(34, 31, 40), PackedInt32Array(34, 38, 31), PackedInt32Array(38, 35, 31), PackedInt32Array(31, 35, 40), PackedInt32Array(38, 39, 35), PackedInt32Array(35, 32, 40), PackedInt32Array(35, 39, 32), PackedInt32Array(32, 41, 40), PackedInt32Array(39, 41, 32), PackedInt32Array(39, 36, 41), PackedInt32Array(39, 42, 36), PackedInt32Array(41, 36, 43), PackedInt32Array(36, 42, 43), PackedInt32Array(42, 33, 43), PackedInt32Array(42, 44, 33), PackedInt32Array(33, 43, 45), PackedInt32Array(44, 45, 37), PackedInt32Array(33, 44, 45), PackedInt32Array(37, 1, 44), PackedInt32Array(37, 29, 1), PackedInt32Array(45, 37, 29), PackedInt32Array(1, 46, 2), PackedInt32Array(46, 3, 2), PackedInt32Array(3, 4, 46), PackedInt32Array(1, 29, 46), PackedInt32Array(46, 47, 29), PackedInt32Array(29, 47, 28), PackedInt32Array(46, 48, 4), PackedInt32Array(5, 48, 4), PackedInt32Array(48, 47, 46), PackedInt32Array(49, 5, 6), PackedInt32Array(48, 54, 53), PackedInt32Array(5, 53, 48), PackedInt32Array(47, 48, 54), PackedInt32Array(47, 27, 28), PackedInt32Array(54, 27, 47), PackedInt32Array(5, 53, 49), PackedInt32Array(6, 53, 49), PackedInt32Array(7, 50, 6), PackedInt32Array(7, 8, 50), PackedInt32Array(8, 9, 50), PackedInt32Array(50, 51, 9), PackedInt32Array(9, 10, 51), PackedInt32Array(50, 51, 6), PackedInt32Array(53, 52, 6), PackedInt32Array(51, 52, 6), PackedInt32Array(51, 52, 10), PackedInt32Array(10, 52, 11), PackedInt32Array(53, 52, 11), PackedInt32Array(53, 12, 11), PackedInt32Array(54, 55, 27), PackedInt32Array(27, 26, 55), PackedInt32Array(12, 54, 53), PackedInt32Array(63, 54, 55), PackedInt32Array(12, 63, 54), PackedInt32Array(12, 13, 63), PackedInt32Array(55, 56, 26), PackedInt32Array(63, 56, 55), PackedInt32Array(63, 57, 56), PackedInt32Array(56, 25, 26), PackedInt32Array(56, 24, 25), PackedInt32Array(57, 24, 56), PackedInt32Array(57, 24, 23), PackedInt32Array(57, 22, 23), PackedInt32Array(58, 22, 21), PackedInt32Array(58, 59, 21), PackedInt32Array(59, 20, 21), PackedInt32Array(59, 60, 20), PackedInt32Array(60, 19, 20), PackedInt32Array(60, 19, 18), PackedInt32Array(60, 18, 17), PackedInt32Array(61, 17, 60), PackedInt32Array(61, 17, 16), PackedInt32Array(15, 16, 61), PackedInt32Array(14, 61, 15), PackedInt32Array(62, 61, 14), PackedInt32Array(13, 14, 62), PackedInt32Array(63, 22, 57), PackedInt32Array(63, 62, 13), PackedInt32Array(63, 58, 22), PackedInt32Array(62, 58, 59), PackedInt32Array(62, 60, 59), PackedInt32Array(62, 61, 60), PackedInt32Array(63, 62, 58)]
+bones = ["UpperArm", PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm", PackedFloat32Array(0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm/Hand", PackedFloat32Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "UpperArm/LowerArm/Hand/Thumb", PackedFloat32Array(0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm/Hand/Rest", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+internal_vertex_count = 33
+
+[node name="MonsterSpecial2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3803.83, 117.927)
+scale = Vector2(0.445131, 0.445131)
+texture = ExtResource("18_wgtgv")
+flip_h = true
+
+[node name="Shadow" type="Sprite2D" parent="MonsterSpecial2"]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(40.5964, 730.74)
+scale = Vector2(4.66504, 0.130662)
+texture = ExtResource("19_kcmva")
+
+[node name="HandPolygon" type="Polygon2D" parent="MonsterSpecial2"]
+visible = false
+position = Vector2(13.4795, 172.983)
+scale = Vector2(4.84987, 4.84987)
+texture = ExtResource("21_t6x77")
+skeleton = NodePath("../HandSkeleton")
+polygon = PackedVector2Array(-2.55101, 61.2245, 118.717, 59.18, 116.399, 48.6631, 120.856, 43.3155, 129.947, 42.6025, 137.077, 42.7808, 144.742, 16.934, 142.781, 2.6738, 149.554, 1.06952, 156.328, 3.0303, 165.597, 10.6952, 168.449, 27.9857, 167.914, 36.3636, 205.526, 33.8681, 224.064, 35.1159, 230.66, 35.2941, 232.264, 39.5722, 230.838, 45.9893, 228.699, 49.7326, 225.134, 50.6239, 215.686, 50.9804, 206.061, 51.6934, 197.861, 51.6934, 195.544, 61.3191, 193.226, 75.7576, 189.127, 80.3922, 170.232, 85.3832, 144.029, 80.2139, 122.46, 71.6578, 122.46, 65.9537, -3.56506, 68.6275, 25.9205, 63.9175, 61.2666, 63.623, 95.5817, 63.3284, 8.9838, 64.2121, 42.268, 64.2121, 78.9396, 62.8866, 107.953, 63.4757, 33.455, 60.7056, 70.073, 59.7324, 33.5766, 67.5182, 70.438, 66.6667, 89.781, 59.3674, 89.1727, 66.18, 103.406, 59.2457, 103.406, 66.3017, 123.139, 52.9175, 131.992, 68.9135, 135.316, 48.4904, 144.099, 32.9369, 147.575, 5.48948, 156.45, 10.3385, 160.567, 21.226, 160.815, 32.4459, 146.339, 72.629, 167.221, 76.1231, 180.948, 67.6373, 189.517, 57.9867, 202.995, 47.5874, 211.148, 46.589, 221.131, 46.589, 229.867, 42.4293, 212.895, 36.3561, 182.529, 39.1847)
+uv = PackedVector2Array(-2.55101, 61.2245, 118.717, 59.18, 116.399, 48.6631, 120.856, 43.3155, 129.947, 42.6025, 137.077, 42.7808, 144.742, 16.934, 142.781, 2.6738, 149.554, 1.06952, 156.328, 3.0303, 165.597, 10.6952, 168.449, 27.9857, 167.914, 36.3636, 205.526, 33.8681, 224.064, 35.1159, 230.66, 35.2941, 232.264, 39.5722, 230.838, 45.9893, 228.699, 49.7326, 225.134, 50.6239, 215.686, 50.9804, 206.061, 51.6934, 197.861, 51.6934, 195.544, 61.3191, 193.226, 75.7576, 189.127, 80.3922, 170.232, 85.3832, 144.029, 80.2139, 122.46, 71.6578, 122.46, 65.9537, -3.56506, 68.6275, 25.9205, 63.9175, 61.2666, 63.623, 95.5817, 63.3284, 8.9838, 64.2121, 42.268, 64.2121, 78.9396, 62.8866, 107.953, 63.4757, 33.455, 60.7056, 70.073, 59.7324, 33.5766, 67.5182, 70.438, 66.6667, 89.781, 59.3674, 89.1727, 66.18, 103.406, 59.2457, 103.406, 66.3017, 123.139, 52.9175, 131.992, 68.9135, 135.316, 48.4904, 144.099, 32.9369, 147.575, 5.48948, 156.45, 10.3385, 160.567, 21.226, 160.815, 32.4459, 146.339, 72.629, 167.221, 76.1231, 180.948, 67.6373, 189.517, 57.9867, 202.995, 47.5874, 211.148, 46.589, 221.131, 46.589, 229.867, 42.4293, 212.895, 36.3561, 182.529, 39.1847)
+polygons = [PackedInt32Array(0, 34, 30), PackedInt32Array(34, 38, 0), PackedInt32Array(30, 34, 40), PackedInt32Array(34, 31, 40), PackedInt32Array(34, 38, 31), PackedInt32Array(38, 35, 31), PackedInt32Array(31, 35, 40), PackedInt32Array(38, 39, 35), PackedInt32Array(35, 32, 40), PackedInt32Array(35, 39, 32), PackedInt32Array(32, 41, 40), PackedInt32Array(39, 41, 32), PackedInt32Array(39, 36, 41), PackedInt32Array(39, 42, 36), PackedInt32Array(41, 36, 43), PackedInt32Array(36, 42, 43), PackedInt32Array(42, 33, 43), PackedInt32Array(42, 44, 33), PackedInt32Array(33, 43, 45), PackedInt32Array(44, 45, 37), PackedInt32Array(33, 44, 45), PackedInt32Array(37, 1, 44), PackedInt32Array(37, 29, 1), PackedInt32Array(45, 37, 29), PackedInt32Array(1, 46, 2), PackedInt32Array(46, 3, 2), PackedInt32Array(3, 4, 46), PackedInt32Array(1, 29, 46), PackedInt32Array(46, 47, 29), PackedInt32Array(29, 47, 28), PackedInt32Array(46, 48, 4), PackedInt32Array(5, 48, 4), PackedInt32Array(48, 47, 46), PackedInt32Array(49, 5, 6), PackedInt32Array(48, 54, 53), PackedInt32Array(5, 53, 48), PackedInt32Array(47, 48, 54), PackedInt32Array(47, 27, 28), PackedInt32Array(54, 27, 47), PackedInt32Array(5, 53, 49), PackedInt32Array(6, 53, 49), PackedInt32Array(7, 50, 6), PackedInt32Array(7, 8, 50), PackedInt32Array(8, 9, 50), PackedInt32Array(50, 51, 9), PackedInt32Array(9, 10, 51), PackedInt32Array(50, 51, 6), PackedInt32Array(53, 52, 6), PackedInt32Array(51, 52, 6), PackedInt32Array(51, 52, 10), PackedInt32Array(10, 52, 11), PackedInt32Array(53, 52, 11), PackedInt32Array(53, 12, 11), PackedInt32Array(54, 55, 27), PackedInt32Array(27, 26, 55), PackedInt32Array(12, 54, 53), PackedInt32Array(63, 54, 55), PackedInt32Array(12, 63, 54), PackedInt32Array(12, 13, 63), PackedInt32Array(55, 56, 26), PackedInt32Array(63, 56, 55), PackedInt32Array(63, 57, 56), PackedInt32Array(56, 25, 26), PackedInt32Array(56, 24, 25), PackedInt32Array(57, 24, 56), PackedInt32Array(57, 24, 23), PackedInt32Array(57, 22, 23), PackedInt32Array(58, 22, 21), PackedInt32Array(58, 59, 21), PackedInt32Array(59, 20, 21), PackedInt32Array(59, 60, 20), PackedInt32Array(60, 19, 20), PackedInt32Array(60, 19, 18), PackedInt32Array(60, 18, 17), PackedInt32Array(61, 17, 60), PackedInt32Array(61, 17, 16), PackedInt32Array(15, 16, 61), PackedInt32Array(14, 61, 15), PackedInt32Array(62, 61, 14), PackedInt32Array(13, 14, 62), PackedInt32Array(63, 22, 57), PackedInt32Array(63, 62, 13), PackedInt32Array(63, 58, 22), PackedInt32Array(62, 58, 59), PackedInt32Array(62, 60, 59), PackedInt32Array(62, 61, 60), PackedInt32Array(63, 62, 58)]
+bones = ["UpperArm", PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm", PackedFloat32Array(0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm/Hand", PackedFloat32Array(0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "UpperArm/LowerArm/Hand/Thumb", PackedFloat32Array(0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "UpperArm/LowerArm/Hand/Rest", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+internal_vertex_count = 33
+
+[node name="SceneSwitcher" type="Node2D" parent="."]
+script = ExtResource("22_ddlnn")
+Scene = ExtResource("23_3k5aw")
+
+[node name="offer_in" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_m141r")
+volume_db = -12.0
+
+[node name="offer_out" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_c5iv1")
+volume_db = -12.0
+
+[node name="footstep_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_uvmju")
+volume_db = -30.0
+
+[node name="footstep_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_1gggt")
+volume_db = -30.0
+
+[connection signal="health_changed" from="player" to="CanvasLayer/HUD" method="health_changed"]
+[connection signal="player_died" from="player" to="CanvasLayer/death_screen" method="player_died"]
+[connection signal="body_entered" from="CameraControlArea2" to="CameraControlArea2" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraControlArea2" to="CameraControlArea2" method="_on_body_exited"]
+[connection signal="trigger_entered" from="CameraControlArea2" to="CameraControlArea2/CameraMover" method="do_anim"]
+[connection signal="body_entered" from="CameraControlArea3" to="CameraControlArea3" method="_on_body_entered"]
+[connection signal="body_exited" from="CameraControlArea3" to="CameraControlArea3" method="_on_body_exited"]
+[connection signal="trigger_entered" from="CameraControlArea3" to="CameraControlArea3/CameraMover" method="do_anim"]
+[connection signal="body_entered" from="EnemySpawnTrigger2" to="EnemySpawnTrigger2" method="_on_body_entered"]
+[connection signal="enemies_dead" from="EnemySpawnTrigger2" to="EnemySpawnTrigger2/CameraMover" method="do_anim"]
+[connection signal="body_entered" from="EnemySpawnTrigger3" to="EnemySpawnTrigger3" method="_on_body_entered"]
+[connection signal="enemies_dead" from="EnemySpawnTrigger3" to="EnemySpawnTrigger3/CameraMover" method="do_anim"]
+[connection signal="body_entered" from="Area2D" to="AnimationPlayer" method="_on_area_2d_body_entered"]

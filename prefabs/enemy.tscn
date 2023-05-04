@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2rya78c3u5xi"]
+[gd_scene load_steps=9 format=3 uid="uid://c2rya78c3u5xi"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_wldt8"]
 [ext_resource type="Texture2D" uid="uid://c851xleo2aok6" path="res://textures/enemybody.png" id="2_l50jb"]
 [ext_resource type="PackedScene" uid="uid://7f8rvj1peea2" path="res://prefabs/deathpuddle.tscn" id="2_rvecm"]
 [ext_resource type="Texture2D" uid="uid://cj5cwe70bd8lw" path="res://textures/enemymouth.png" id="3_x3ojp"]
 [ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="4_rylpv"]
+[ext_resource type="AudioStream" uid="uid://bka80aiqhldiy" path="res://sounds/enemy/enemy_death.mp3" id="6_xm5gs"]
+[ext_resource type="AudioStream" uid="uid://r3pw6mlye2fr" path="res://sounds/enemy/enemy_melee.ogg" id="7_syvdh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvxwv"]
 size = Vector2(105.539, 18.5017)
@@ -39,3 +41,10 @@ y_sort_enabled = true
 position = Vector2(0, 79.0121)
 scale = Vector2(0.648604, 0.130662)
 texture = ExtResource("4_rylpv")
+
+[node name="enemy_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xm5gs")
+
+[node name="enemy_melee" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_syvdh")
+volume_db = -12.0

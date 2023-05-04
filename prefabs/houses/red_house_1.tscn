@@ -1,0 +1,215 @@
+[gd_scene load_steps=14 format=3 uid="uid://by8gywbpsil1j"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_crjth"]
+[ext_resource type="Texture2D" uid="uid://c7c8dme0qx818" path="res://textures/houses/g34534.png" id="2_c3etb"]
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="3_56sdy"]
+[ext_resource type="Texture2D" uid="uid://kjoy3utaab53" path="res://textures/enemy.png" id="4_rw0j1"]
+[ext_resource type="Texture2D" uid="uid://ds6cgufgkwxyk" path="res://textures/package.png" id="5_mmdl4"]
+[ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="6_jitgj"]
+[ext_resource type="AudioStream" uid="uid://c8ahkgbwaxurc" path="res://sounds/intro/popping-out.mp3" id="7_sfw2k"]
+
+[sub_resource type="Animation" id="Animation_7ns0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_opened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_opened/Enemy/Package:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_v3l0b"]
+resource_name = "knock_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_opened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_opened/Enemy/Package:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"make_player_offer"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ytc56"]
+resource_name = "package_accept"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_opened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_opened/Enemy/Package:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"make_player_reset"
+}, {
+"args": [],
+"method": &"enable_player_animtree"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1fndg"]
+resource_name = "package_reject"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door_opened:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"make_player_offer"
+}, {
+"args": [],
+"method": &"enable_player_animtree"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f4cf3"]
+_data = {
+"RESET": SubResource("Animation_7ns0r"),
+"knock_animation": SubResource("Animation_v3l0b"),
+"package_accept": SubResource("Animation_ytc56"),
+"package_reject": SubResource("Animation_1fndg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ne4nl"]
+size = Vector2(161, 70.125)
+
+[node name="red_house_1" type="Node2D"]
+z_index = -1
+script = ExtResource("1_crjth")
+ShouldTrigger = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(67, -416)
+texture = ExtResource("2_c3etb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f4cf3")
+}
+
+[node name="door_opened" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.807843, 0.376471, 0.376471, 1)
+clip_children = 2
+position = Vector2(36, 212)
+scale = Vector2(0.571733, 0.978229)
+texture = ExtResource("3_56sdy")
+
+[node name="Enemy" type="Sprite2D" parent="door_opened"]
+position = Vector2(20.2799, 44.9619)
+scale = Vector2(0.444242, 0.257421)
+texture = ExtResource("4_rw0j1")
+
+[node name="Package" type="Sprite2D" parent="door_opened/Enemy"]
+position = Vector2(98.622, 152.694)
+scale = Vector2(0.517011, 0.521468)
+texture = ExtResource("5_mmdl4")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("6_jitgj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(31, 351)
+shape = SubResource("RectangleShape2D_ne4nl")
+debug_color = Color(0, 0.6, 0.701961, 0.12549)
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sfw2k")
+volume_db = -5.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="trigger_entered" from="Area2D" to="." method="_on_area_2d_trigger_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu7r4o5c80uu0"]
+
+[ext_resource type="PackedScene" uid="uid://dgk1nlexkxad4" path="res://prefabs/houses/house_gen_1.tscn" id="1_pxkva"]
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="2_4gfae"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="3_4xx42"]
+
+[node name="house_gen_1" instance=ExtResource("1_pxkva")]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(34, 81)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="4"]
+self_modulate = Color(0.356863, 0.301961, 0.0352941, 1)
+position = Vector2(50, 225)
+rotation = -0.523598
+scale = Vector2(1, 0.15625)
+texture = ExtResource("2_4gfae")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D2" index="0"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-96.875, 24.8002)
+scale = Vector2(0.0615234, 0.39375)
+texture = ExtResource("3_4xx42")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D2" index="1"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(109, 24.8002)
+scale = Vector2(0.0615234, 0.39375)
+texture = ExtResource("3_4xx42")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="5"]
+self_modulate = Color(0.356863, 0.301961, 0.0352941, 1)
+position = Vector2(62, 282)
+rotation = -0.523598
+scale = Vector2(1, 0.15625)
+texture = ExtResource("2_4gfae")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D3" index="0"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-96.875, 24.8002)
+scale = Vector2(0.0615234, 0.39375)
+texture = ExtResource("3_4xx42")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D3" index="1"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(109, 24.8002)
+scale = Vector2(0.0615234, 0.39375)
+texture = ExtResource("3_4xx42")

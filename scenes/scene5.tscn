@@ -1,0 +1,209 @@
+[gd_scene load_steps=17 format=3 uid="uid://cwcu0tvvinbkd"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_5aie4"]
+[ext_resource type="Script" path="res://scripts/camera_mover.gd" id="2_alsxn"]
+[ext_resource type="Script" path="res://scripts/camera_zoomer.gd" id="7_hhjn7"]
+[ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="7_yt21d"]
+[ext_resource type="Script" path="res://scripts/smart_trigger.gd" id="8_l65es"]
+[ext_resource type="PackedScene" uid="uid://dtr53nb1ycc7g" path="res://prefabs/HUD.tscn" id="9_lo3kf"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="9_we8g1"]
+[ext_resource type="PackedScene" uid="uid://dj3hekmidmnw2" path="res://prefabs/death_screen.tscn" id="10_8ycvt"]
+[ext_resource type="PackedScene" uid="uid://cs2adxu2t7fhw" path="res://scenes/scene_last.tscn" id="10_tr5nb"]
+[ext_resource type="PackedScene" uid="uid://d14dk7c550cai" path="res://prefabs/houses/red_house_3.tscn" id="11_jxojj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x143r"]
+size = Vector2(1721, 482.5)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wbvrf"]
+normal = Vector2(0.999742, -0.0227214)
+distance = 181.003
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tysb"]
+normal = Vector2(-1, 0)
+distance = 36.2353
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nnbnm"]
+normal = Vector2(0, 1)
+distance = 111.018
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o747g"]
+normal = Vector2(0.00613485, -0.999981)
+distance = 128.016
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd5p8"]
+size = Vector2(407.5, 695)
+
+[node name="scene3" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Floor3" type="Sprite2D" parent="."]
+modulate = Color(0.729412, 0, 0.32549, 1)
+z_index = -2
+position = Vector2(3249, 271)
+scale = Vector2(34.0625, 1.87625)
+texture = ExtResource("1_5aie4")
+
+[node name="Part1" type="Node2D" parent="."]
+
+[node name="CameraMover" type="Node2D" parent="Part1" node_paths=PackedStringArray("camera")]
+position = Vector2(787, -12)
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+
+[node name="CameraControlArea2" type="Area2D" parent="Part1"]
+position = Vector2(67, 25)
+script = ExtResource("8_l65es")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part1/CameraControlArea2"]
+position = Vector2(-8, 234)
+shape = SubResource("RectangleShape2D_x143r")
+
+[node name="Node2D" type="Node2D" parent="Part1/CameraControlArea2" node_paths=PackedStringArray("camera")]
+script = ExtResource("7_hhjn7")
+camera = NodePath("../../../Camera2D2")
+zoom = 0.15
+duration = 7.0
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(123, 11)
+zoom = Vector2(0.7, 0.7)
+position_smoothing_enabled = true
+
+[node name="LeftBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(-349, 0)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/LeftBorder"]
+position = Vector2(-846, -4)
+shape = SubResource("WorldBoundaryShape2D_wbvrf")
+
+[node name="RightBorder" type="StaticBody2D" parent="Camera2D2"]
+position = Vector2(300, 0)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D2/RightBorder"]
+position = Vector2(620.511, -6)
+shape = SubResource("WorldBoundaryShape2D_3tysb")
+
+[node name="player" parent="." instance=ExtResource("7_yt21d")]
+position = Vector2(-425, 219)
+collision_mask = 13
+MaxHealth = 150.0
+Health = 150.0
+
+[node name="UpBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, -173)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_nnbnm")
+
+[node name="DownBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, 558)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_o747g")
+
+[node name="Part2" type="Node2D" parent="."]
+position = Vector2(2245, 0)
+
+[node name="CameraMover2" type="Node2D" parent="Part2" node_paths=PackedStringArray("camera")]
+position = Vector2(-518, -79)
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="CameraMover3" type="Node2D" parent="Part2" node_paths=PackedStringArray("camera")]
+position = Vector2(581, -112)
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 7.0
+
+[node name="Part3" type="Node2D" parent="."]
+position = Vector2(3496, -2)
+
+[node name="CameraControlArea2" type="Area2D" parent="Part3"]
+position = Vector2(67, 25)
+script = ExtResource("8_l65es")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Part3/CameraControlArea2"]
+position = Vector2(-76.5, 253)
+shape = SubResource("RectangleShape2D_x143r")
+
+[node name="Node" type="Node" parent="Part3/CameraControlArea2" node_paths=PackedStringArray("camera")]
+script = ExtResource("7_hhjn7")
+camera = NodePath("../../../Camera2D2")
+zoom = 0.7
+duration = 4.0
+
+[node name="CameraMover2" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(162, -93)
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="CameraMover3" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(3292, -88)
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+duration = 7.0
+
+[node name="CameraMover4" type="Node2D" parent="Part3" node_paths=PackedStringArray("camera")]
+position = Vector2(2265, -109)
+rotation = 4.71238
+script = ExtResource("2_alsxn")
+camera = NodePath("../../Camera2D2")
+offsetX = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Part3"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 7
+position = Vector2(4405, -209)
+scale = Vector2(2.78547, 5.72)
+texture = ExtResource("1_5aie4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("9_lo3kf")]
+metadata/_edit_use_anchors_ = true
+
+[node name="death_screen" parent="CanvasLayer" instance=ExtResource("10_8ycvt")]
+visible = false
+
+[node name="red_house_4" parent="." instance=ExtResource("11_jxojj")]
+position = Vector2(2514, -1108)
+scale = Vector2(3.11285, 3.11285)
+
+[node name="SwitchArea" type="Area2D" parent="."]
+position = Vector2(4166, 426)
+script = ExtResource("8_l65es")
+ShouldTrigger = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwitchArea"]
+position = Vector2(3605, -375)
+shape = SubResource("RectangleShape2D_fd5p8")
+
+[node name="Node" type="Node" parent="SwitchArea"]
+script = ExtResource("9_we8g1")
+Scene = ExtResource("10_tr5nb")
+
+[connection signal="body_entered" from="Part1/CameraControlArea2" to="Part1/CameraControlArea2" method="_on_body_entered"]
+[connection signal="body_exited" from="Part1/CameraControlArea2" to="Part1/CameraControlArea2" method="_on_body_exited"]
+[connection signal="trigger_entered" from="Part1/CameraControlArea2" to="Part1/CameraControlArea2/Node2D" method="do_anim"]
+[connection signal="trigger_entered" from="Part1/CameraControlArea2" to="Part2/CameraMover3" method="do_anim"]
+[connection signal="health_changed" from="player" to="CanvasLayer/HUD" method="health_changed"]
+[connection signal="player_died" from="player" to="CanvasLayer/death_screen" method="player_died"]
+[connection signal="body_entered" from="Part3/CameraControlArea2" to="Part3/CameraControlArea2" method="_on_body_entered"]
+[connection signal="body_exited" from="Part3/CameraControlArea2" to="Part3/CameraControlArea2" method="_on_body_exited"]
+[connection signal="trigger_entered" from="Part3/CameraControlArea2" to="Part3/CameraControlArea2/Node" method="do_anim"]
+[connection signal="trigger_entered" from="Part3/CameraControlArea2" to="Part3/CameraMover3" method="do_anim"]
+[connection signal="ended_sequence" from="red_house_4" to="Part3/CameraControlArea2" method="_enable_monitoring"]
+[connection signal="body_entered" from="SwitchArea" to="SwitchArea" method="_on_body_entered"]
+[connection signal="trigger_entered" from="SwitchArea" to="SwitchArea/Node" method="switch_area"]

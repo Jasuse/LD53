@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://8sg42hdwabbh"]
+[gd_scene load_steps=28 format=3 uid="uid://8sg42hdwabbh"]
 
 [ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_u50hy"]
 [ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="2_wl12k"]
-[ext_resource type="PackedScene" uid="uid://cgofhrw5xbqua" path="res://prefabs/enemy_shooter.tscn" id="3_6bdt7"]
 [ext_resource type="PackedScene" uid="uid://c2rya78c3u5xi" path="res://prefabs/enemy.tscn" id="3_cgd24"]
 [ext_resource type="PackedScene" uid="uid://hso6d86736w0" path="res://prefabs/enemy_spitter.tscn" id="4_6yq4g"]
 [ext_resource type="Script" path="res://scripts/enemy_area.gd" id="4_vlsyb"]
@@ -13,9 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://i8vd1ylpgvn1" path="res://prefabs/enemy_melee_variants/enemy_knife.tscn" id="9_m6bht"]
 [ext_resource type="PackedScene" uid="uid://dj3hekmidmnw2" path="res://prefabs/death_screen.tscn" id="10_8y6s3"]
 [ext_resource type="Texture2D" uid="uid://oe872yw27buj" path="res://textures/houses/g22695.png" id="12_0yg1a"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="12_8v8ys"]
 [ext_resource type="Texture2D" uid="uid://swj2mfy3ogna" path="res://textures/houses/g28123.png" id="12_n2ucu"]
+[ext_resource type="PackedScene" uid="uid://n4wlqg245loj" path="res://scenes/scene2.tscn" id="13_b71t1"]
 [ext_resource type="Texture2D" uid="uid://cdrw2y8j8n7t1" path="res://textures/houses/g28090.png" id="14_a7hir"]
 [ext_resource type="PackedScene" uid="uid://dgk1nlexkxad4" path="res://prefabs/houses/house_gen_1.tscn" id="15_jy3vy"]
+[ext_resource type="PackedScene" uid="uid://b8c0ph7bpnmgr" path="res://prefabs/howtoplay.tscn" id="16_nh0w1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og365"]
 size = Vector2(207, 506)
@@ -43,12 +45,13 @@ distance = 128.016
 size = Vector2(207, 478)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11dnh"]
-size = Vector2(263.5, 482.5)
+size = Vector2(645.75, 482.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymj3d"]
 size = Vector2(407.5, 695)
 
 [node name="Scene" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Part1" type="Node2D" parent="."]
 
@@ -138,11 +141,9 @@ position = Vector2(620.511, -6)
 shape = SubResource("WorldBoundaryShape2D_j68wt")
 
 [node name="player" parent="." instance=ExtResource("2_wl12k")]
-position = Vector2(-425, 219)
-scale = Vector2(0.377442, 0.377442)
+position = Vector2(-937, 211)
 collision_mask = 12
-MaxHealth = 175.0
-Health = 175.0
+Health = 125.0
 
 [node name="UpBorder" type="StaticBody2D" parent="."]
 position = Vector2(-1, -173)
@@ -165,19 +166,19 @@ shape = SubResource("WorldBoundaryShape2D_0e5wl")
 [node name="Enemies2" type="Node" parent="Part2"]
 
 [node name="Node2D" type="Node2D" parent="Part2/Enemies2"]
-position = Vector2(2376, 89)
+position = Vector2(2624, 81)
 
 [node name="Node2D2" type="Node2D" parent="Part2/Enemies2"]
-position = Vector2(2387, 267)
+position = Vector2(2635, 259)
 
 [node name="Node2D3" type="Node2D" parent="Part2/Enemies2"]
-position = Vector2(2560, 183)
+position = Vector2(2808, 175)
 
 [node name="EnemySpawnTrigger2" type="Area2D" parent="Part2" node_paths=PackedStringArray("Enemies_Parent")]
 position = Vector2(1131, 13)
 script = ExtResource("4_vlsyb")
 Enemies_Parent = NodePath("../Enemies2")
-EnemiesPrefab = Array[PackedScene]([ExtResource("8_exjiq"), ExtResource("3_6bdt7")])
+EnemiesPrefab = Array[PackedScene]([ExtResource("8_exjiq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Part2/EnemySpawnTrigger2"]
 position = Vector2(93, 248)
@@ -186,10 +187,9 @@ shape = SubResource("RectangleShape2D_insid")
 [node name="CameraControlArea2" type="Area2D" parent="Part2"]
 position = Vector2(67, 25)
 script = ExtResource("6_vvdpj")
-ShouldTrigger = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Part2/CameraControlArea2"]
-position = Vector2(831, 234.75)
+position = Vector2(1022.13, 234.75)
 shape = SubResource("RectangleShape2D_11dnh")
 
 [node name="CameraMover" type="Node2D" parent="Part2" node_paths=PackedStringArray("camera")]
@@ -225,10 +225,15 @@ shape = SubResource("RectangleShape2D_insid")
 [node name="SwitchArea" type="Area2D" parent="Part3"]
 position = Vector2(4166, 426)
 script = ExtResource("6_vvdpj")
+ShouldTrigger = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Part3/SwitchArea"]
 position = Vector2(1303, -314)
 shape = SubResource("RectangleShape2D_ymj3d")
+
+[node name="Node" type="Node" parent="Part3/SwitchArea"]
+script = ExtResource("12_8v8ys")
+Scene = ExtResource("13_b71t1")
 
 [node name="CameraControlArea" type="Area2D" parent="Part3"]
 position = Vector2(2003, 13)
@@ -269,11 +274,15 @@ scale = Vector2(2.78547, 5.72)
 texture = ExtResource("1_u50hy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("8_t64uq")]
 
 [node name="death_screen" parent="CanvasLayer" instance=ExtResource("10_8y6s3")]
 visible = false
+
+[node name="howtoplay" parent="CanvasLayer" instance=ExtResource("16_nh0w1")]
+process_mode = 3
 
 [node name="BG" type="Node2D" parent="."]
 
@@ -309,6 +318,7 @@ texture = ExtResource("1_u50hy")
 
 [node name="Rect3" type="Sprite2D" parent="BG"]
 modulate = Color(0, 0, 0, 1)
+z_index = -1
 position = Vector2(573.75, -133.5)
 scale = Vector2(0.431641, 0.277344)
 texture = ExtResource("1_u50hy")
@@ -333,6 +343,7 @@ texture = ExtResource("1_u50hy")
 [connection signal="player_died" from="player" to="CanvasLayer/death_screen" method="player_died"]
 [connection signal="body_entered" from="Part2/EnemySpawnTrigger2" to="Part2/EnemySpawnTrigger2" method="_on_body_entered"]
 [connection signal="enemies_dead" from="Part2/EnemySpawnTrigger2" to="Part1/house_gen_1" method="_enable_triggering"]
+[connection signal="enemies_dead" from="Part2/EnemySpawnTrigger2" to="Part2/CameraControlArea2" method="_enable_monitoring"]
 [connection signal="enemies_dead" from="Part2/EnemySpawnTrigger2" to="Part3/CameraControlArea" method="_enable_monitoring"]
 [connection signal="body_entered" from="Part2/CameraControlArea2" to="Part2/CameraControlArea2" method="_on_body_entered"]
 [connection signal="body_exited" from="Part2/CameraControlArea2" to="Part2/CameraControlArea2" method="_on_body_exited"]
@@ -340,6 +351,7 @@ texture = ExtResource("1_u50hy")
 [connection signal="body_entered" from="Part3/EnemySpawnTrigger" to="Part3/EnemySpawnTrigger" method="_on_body_entered"]
 [connection signal="enemies_dead" from="Part3/EnemySpawnTrigger" to="Part3/CameraMover3" method="do_anim"]
 [connection signal="body_entered" from="Part3/SwitchArea" to="Part3/SwitchArea" method="_on_body_entered"]
+[connection signal="trigger_entered" from="Part3/SwitchArea" to="Part3/SwitchArea/Node" method="switch_area"]
 [connection signal="body_entered" from="Part3/CameraControlArea" to="Part3/CameraControlArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Part3/CameraControlArea" to="Part3/CameraControlArea" method="_on_body_exited"]
 [connection signal="trigger_entered" from="Part3/CameraControlArea" to="Part3/CameraMover" method="do_anim"]

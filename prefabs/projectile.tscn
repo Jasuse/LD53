@@ -35,4 +35,10 @@ position = Vector2(0, 118)
 scale = Vector2(0.996995, 1)
 shape = SubResource("CircleShape2D_b1r53")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+position = Vector2(1.6263e-19, 120)
+scale = Vector2(0.123632, 0.0241519)
+texture = ExtResource("1_ta8lq")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -18,6 +18,8 @@ var next_attack : float
 var time : float 
 var mirrored : bool = false
 
+@onready var enemy_death = $enemy_death
+@onready var enemy_melee = $enemy_melee
 
 func switch_mouth_state(state : bool):
 	shoot_mouth.visible = state
@@ -39,7 +41,7 @@ func _process(delta):
 				move_dir = Vector2(0, vdir)
 				return
 			move_dir = Vector2.ZERO
-			if(next_attack < time):
+			if(next_attack < time && GameInstance.player.Health >= 0):
 				var inst = Bullet.instantiate()
 				get_tree().current_scene.add_child(inst)
 				inst.global_position = shoot_mouth.global_position
@@ -47,6 +49,7 @@ func _process(delta):
 				inst.Initialize(self, -1 if direction > 0 else 1)
 				switch_mouth_state(true)
 				next_attack = time + Delay
+				enemy_melee.play()
 
 func _physics_process(delta):
 	velocity = move_dir * Speed

@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdlonbeglhjj4"]
+
+[ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_01uml"]
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="2_epfn2"]
+[ext_resource type="Script" path="res://scripts/switch_area.gd" id="3_n53wl"]
+[ext_resource type="PackedScene" uid="uid://cwmtbq5eq4qlq" path="res://scenes/intro_1.tscn" id="4_akwel"]
+
+[node name="intro_1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-24, 17.4309)
+scale = Vector2(9.03755, 3.56695)
+texture = ExtResource("1_01uml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.215686, 0.215686, 0.215686, 1)
+position = Vector2(326, 892)
+rotation = -0.131869
+scale = Vector2(36.0839, -2.16591)
+texture = ExtResource("1_01uml")
+
+[node name="Moon" type="Sprite2D" parent="."]
+self_modulate = Color(0.407843, 0.407843, 0.407843, 1)
+position = Vector2(-555, -201)
+scale = Vector2(0.272198, 0.272198)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Moon"]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(40.4119, 58.7808)
+scale = Vector2(0.255472, 0.255472)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Moon"]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(-62.4541, -7.34766)
+scale = Vector2(0.113386, 0.113386)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Moon"]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(73.4761, -22.0427)
+scale = Vector2(0.136114, 0.136114)
+texture = ExtResource("2_epfn2")
+
+[node name="Star" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(-493, -348)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Star2" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(-364, -286)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(104, -350)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(677, -278)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(993, -318)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(917, -116)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(374, -259)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="punpun" type="Sprite2D" parent="."]
+modulate = Color(0.886275, 0.886275, 0.886275, 1)
+position = Vector2(219, -253)
+scale = Vector2(0.0765709, 0.0765709)
+texture = ExtResource("2_epfn2")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_n53wl")
+Scene = ExtResource("4_akwel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -15.5
+offset_right = 23.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Start"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -276.0
+offset_top = 139.0
+offset_right = 273.0
+offset_bottom = 266.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "Triangle Jack"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 129.5
+offset_top = 242.0
+offset_right = 678.5
+offset_bottom = 369.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 8
+text = "why jack?"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="Node" method="switch_area"]

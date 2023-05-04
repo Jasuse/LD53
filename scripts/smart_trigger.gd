@@ -15,6 +15,7 @@ func _enable_monitoring():
 func _on_body_entered(body):
 	if(body == GameInstance.player):
 		triggered = true
+		print("player entered")
 		if(ShouldTrigger):
 			trigger_entered.emit()
 			set_deferred("monitoring", false)

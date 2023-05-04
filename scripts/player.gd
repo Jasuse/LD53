@@ -14,17 +14,23 @@ signal player_died
 @export var HitToRegen : int = 4
 @export var AbilityCD : float = 2
 @export var HeavyBootsTime : float = 10
-@onready var animation_tree = $AnimationTree
-@onready var body = $Body
+@onready var animation_tree = $Node2D/AnimationTree
+
+@onready var body = $Node2D/Body
 
 
-@onready var animation_player = $AnimationPlayer
-@onready var hand_polygon = $HandPolygon
-@onready var left_leg_polygon = $LeftLegPolygon
-@onready var right_leg_polygon = $RightLegPolygon
+
+@onready var animation_player = $Node2D/AnimationPlayer
+
+@onready var hand_polygon = $Node2D/HandPolygon
+
+@onready var left_leg_polygon = $Node2D/LeftLegPolygon
+@onready var right_leg_polygon = $Node2D/RightLegPolygon
+
+
  
-@onready var leftboots = $LeftLegSkeleton/UpperLeg/LowerLeg/Boots
-@onready var rightboots = $RightLegSkeleton/UpperLeg/LowerLeg/Boots
+@onready var leftboots = $Node2D/LeftLegSkeleton/UpperLeg/LowerLeg/Boots
+@onready var rightboots = $Node2D/RightLegSkeleton/UpperLeg/LowerLeg/Boots
 
 
 var controlled : bool = false
@@ -44,11 +50,28 @@ var next_damage : float
 var current_hits : int = 0
 
 var has_heavy_boots : bool = false
+var using_ability : bool = false
 
-@onready var fist_area :Area2D= $FistArea
-@onready var laser_ray_cast:Area2D = $LaserRayCast
-@onready var boots_area:Area2D = $BootsArea
-@onready var boots_particles : CPUParticles2D = $CPUParticles2D2
+@onready var fist_area = $Node2D/FistArea
+@onready var laser_ray_cast = $Node2D/LaserRayCast
+
+@onready var boots_area = $Node2D/BootsArea
+@onready var boots_particles = $Node2D/CPUParticles2D2
+
+var next_step : float = 0
+var step_time : float = 0.3
+@onready var footstep_1 : AudioStreamPlayer = $footstep1
+@onready var footstep_2 : AudioStreamPlayer = $footstep2
+@onready var shoot : AudioStreamPlayer = $shoot
+@onready var sndprojectile_hit : AudioStreamPlayer= $projectile_hit
+@onready var hit = $hit
+
+@onready var heavy_footstep_1 = $heavy_footstep1
+@onready var heavy_footstep_2 = $heavy_footstep2
+@onready var laser_begin = $laser_begin
+@onready var laser_end = $laser_end
+@onready var fist = $fist
+@onready var offer_out = $offer_out
 
 
 func _init():
@@ -95,6 +118,8 @@ func _shoot_laser():
 		if(body != self):
 			if(body.has_method("take_damage")):
 				body.take_damage(50)
+	using_ability = false
+	laser_end.play()
 
 func _do_shockwave():
 	var bodies = fist_area.get_overlapping_bodies()
@@ -104,6 +129,8 @@ func _do_shockwave():
 				var dist = body.global_position.distance_to(fist_area.global_position)
 				var damage = 70 - dist * 0.01
 				body.take_damage(damage)
+	fist.play()
+	using_ability = false
 
 func _boots_shockwave():
 	var bodies = boots_area.get_overlapping_bodies()
@@ -138,26 +165,31 @@ func _process(delta):
 			inst.Initialize(self, -1 if mirrored else 1)
 			inst.hit_enemy.connect(projectile_hit)
 			next_shoot = time + Delay
+			shoot.play()
 			animation_tree.set("parameters/Shoot/request", 1)
 	
 	if(wantAlt && (Health - 125 >= 0)):
-		if(next_shoot < time && next_ability < time):
+		if(next_ability < time):
 			next_shoot = time + AbilityCD
 			next_ability = time + AbilityCD
 			animation_tree.set("parameters/LaserShoot/request", 1)
 			health_changed.emit(int(Health), int(Health - 25))
 			Health -= 25
-	
+			using_ability = true
+			laser_begin.play()
+			
 	if(wantAb1 && (Health - 150 >= 0)):
-		if(next_shoot < time && next_ability < time):
+		if(next_ability < time):
 			next_shoot = time + AbilityCD
 			next_ability = time + AbilityCD
 			animation_tree.set("parameters/FistAttack/request", 1)
 			health_changed.emit(int(Health), int(Health - 50))
 			Health -= 50
+			using_ability = true
+			offer_out.play()
 			
 	if(wantAb2 && (Health - 175 >= 0)):
-		if(next_shoot < time && next_ability < time):
+		if(next_ability < time):
 			next_shoot = time + AbilityCD + HeavyBootsTime - 0.1
 			next_ability = time + AbilityCD + HeavyBootsTime
 			has_heavy_boots = true
@@ -175,15 +207,30 @@ func _physics_process(delta):
 	if(controlled || Health <= 0):
 		return
 	
-	if( (dir.x < 0 && !mirrored) || (dir.x > 0 && mirrored)):
+	if( !using_ability && !wantShoot && ((dir.x < 0 && !mirrored) || (dir.x > 0 && mirrored))):
 		var newscale = Vector2(-1, 1)
 		apply_scale(newscale)
 		mirrored = !mirrored
+	if(dir.length_squared() > 0 && next_step < time):
+		randomize()
+		if(has_heavy_boots):
+			if(randi() > 50):
+				heavy_footstep_1.play()
+			else:
+				heavy_footstep_2.play()
+			next_step = time + step_time * 3.5
+		else:
+			if(randi() > 50):
+				footstep_1.play()
+			else:
+				footstep_2.play()
+			next_step = time + step_time
 	velocity = dir * Speed
 	move_and_slide()
 
 func projectile_hit():
 	current_hits += 1
+	sndprojectile_hit.play()
 	if(current_hits >= HitToRegen):
 		do_flash(Color.DARK_GREEN)
 		var oldHP = Health
@@ -191,6 +238,7 @@ func projectile_hit():
 		Health = min(MaxHealth, Health)
 		health_changed.emit(int(oldHP), int(Health))
 		current_hits = 0
+		
 
 func do_flash(color : Color):
 	body.modulate = color
@@ -208,9 +256,18 @@ func take_damage(dmg : float):
 	if(next_damage < time):
 		do_flash(Color.RED)
 		var oldHP = Health
-		Health -= dmg
+		if(has_heavy_boots):
+			Health -= dmg * 0.1
+		else:
+			Health -= dmg
 		health_changed.emit(int(oldHP), int(Health))
 		next_damage = time + 0.4
+		if(!has_heavy_boots):
+			hit.play()
 	if(Health <= 0):
 		do_death()
 		player_died.emit()
+
+func get_grabbed(nodepath : NodePath):
+	var node = get_tree().current_scene.get_node(nodepath)
+	self.reparent(node, true)

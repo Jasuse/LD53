@@ -9,6 +9,7 @@ signal ended_sequence
 @onready var area_2d = $Area2D
 
 var triggered : bool = false
+@onready var pop = $pop
 
 func _ready():
 	if(ShouldTrigger):
@@ -40,11 +41,13 @@ func _on_animation_player_animation_finished(anim_name):
 			var isgood = randi() > 50
 			if(isgood):
 				animplayer.play("package_accept")
+				pop.play()
 			else:
 				animplayer.play("package_reject")
 		else:
 			if(GuaranteedOutcome):
 				animplayer.play("package_accept")
+				pop.play()
 			else:
 				animplayer.play("package_reject")
 				print("should reject")

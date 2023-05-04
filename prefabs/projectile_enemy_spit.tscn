@@ -30,8 +30,15 @@ scale = Vector2(0.259766, 0.289667)
 texture = ExtResource("2_t4rb4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0, 124)
 scale = Vector2(0.996995, 1)
 shape = SubResource("CircleShape2D_b1r53")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(2.86102e-06, 162)
+scale = Vector2(0.123632, 0.0241519)
+texture = ExtResource("2_t4rb4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

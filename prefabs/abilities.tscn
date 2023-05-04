@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://bprk4egteol4y"]
+
+[ext_resource type="Script" path="res://scripts/hint.gd" id="1_nv4cw"]
+[ext_resource type="PackedScene" uid="uid://ndn4o7lxu21t" path="res://prefabs/power_up.tscn" id="2_5fl6t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fsoy"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 0.176471)
+
+[node name="howtoplay" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nv4cw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1fsoy")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 219.0
+offset_right = 1133.0
+offset_bottom = 380.0
+theme_override_font_sizes/font_size = 32
+text = "As you could`ve seen, your ability consume \"mana\" which is also your HP.  1st ability consumes one \"mana\" bar, second two, and third three"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 405.0
+offset_right = 1138.0
+offset_bottom = 566.0
+theme_override_font_sizes/font_size = 32
+text = "This is powerup that increases your maximum HP by one mana bar. Try using your second ability on next wave =)"
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 602.0
+offset_right = 1124.0
+offset_bottom = 763.0
+theme_override_font_sizes/font_size = 32
+text = "I am sorry to interrupt you ;_;.
+Press space to continue"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = 119.0
+offset_right = 136.5
+offset_bottom = 189.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "How to play"
+
+[node name="power_up" parent="Panel" instance=ExtResource("2_5fl6t")]
+position = Vector2(226, 424)

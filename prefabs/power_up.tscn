@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://ndn4o7lxu21t"]
+
+[ext_resource type="Texture2D" uid="uid://cwhkcmdxusoe6" path="res://textures/circle.png" id="1_jgpk7"]
+[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_rgw5k"]
+[ext_resource type="Texture2D" uid="uid://dh3tjnb6ofcwf" path="res://textures/player/playerbody.png" id="2_lir0a"]
+[ext_resource type="Texture2D" uid="uid://v3g6k2ign818" path="res://textures/player/eye.png" id="3_p7n7f"]
+[ext_resource type="Texture2D" uid="uid://bhncp82t6wxwd" path="res://textures/player/nose.png" id="4_iws2i"]
+[ext_resource type="Texture2D" uid="uid://581etml4ssji" path="res://textures/player/mouth.png" id="5_w62ou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlujx"]
+size = Vector2(211, 20)
+
+[node name="power_up" type="Area2D"]
+scale = Vector2(0.53945, 0.53945)
+script = ExtResource("1_rgw5k")
+amplitude = 3.0
+frequency = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.301961, 0.301961, 0.301961, 0.337255)
+texture = ExtResource("1_jgpk7")
+
+[node name="Body" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(0.392157, 0.392157, 0.392157, 1)
+position = Vector2(3.99999, -6.99998)
+rotation = -3.14159
+scale = Vector2(0.138841, -0.138841)
+texture = ExtResource("2_lir0a")
+
+[node name="Eye" type="Sprite2D" parent="Sprite2D/Body"]
+position = Vector2(-116.206, -40.8289)
+scale = Vector2(2.15831, 2.15831)
+texture = ExtResource("3_p7n7f")
+
+[node name="Eye2" type="Sprite2D" parent="Sprite2D/Body"]
+position = Vector2(141.331, -50.251)
+scale = Vector2(2.15831, 2.15831)
+texture = ExtResource("3_p7n7f")
+
+[node name="Nose" type="Sprite2D" parent="Sprite2D/Body"]
+position = Vector2(3.14066, 103.643)
+scale = Vector2(2.15831, 2.15831)
+texture = ExtResource("4_iws2i")
+
+[node name="Mouth" type="Sprite2D" parent="Sprite2D/Body"]
+position = Vector2(-56.5326, 219.85)
+scale = Vector2(2.15831, 2.15831)
+texture = ExtResource("5_w62ou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 105)
+shape = SubResource("RectangleShape2D_jlujx")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.117647, 0.117647, 0.117647, 0.25098)
+z_index = -1
+position = Vector2(3, 105)
+scale = Vector2(0.631289, 0.130662)
+texture = ExtResource("1_jgpk7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

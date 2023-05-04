@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d17u7s26jobbx"]
+[gd_scene load_steps=13 format=3 uid="uid://d17u7s26jobbx"]
 
 [ext_resource type="Texture2D" uid="uid://pkb0oq50o0t3" path="res://textures/rect.png" id="1_evclb"]
 [ext_resource type="PackedScene" uid="uid://ns7s66w6uh8" path="res://prefabs/player.tscn" id="2_x10ks"]
 [ext_resource type="Script" path="res://scripts/switch_area.gd" id="3_k2d7f"]
-[ext_resource type="PackedScene" uid="uid://caqixj8oixi0u" path="res://scenes/scene.tscn" id="4_no55a"]
+[ext_resource type="PackedScene" uid="uid://8sg42hdwabbh" path="res://scenes/scene.tscn" id="4_no55a"]
+[ext_resource type="Texture2D" uid="uid://ds6cgufgkwxyk" path="res://textures/package.png" id="5_2dftp"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_hp0hp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s38qm"]
 normal = Vector2(0.0137918, 0.999905)
@@ -11,16 +14,38 @@ normal = Vector2(0.0137918, 0.999905)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pufwo"]
 size = Vector2(149, 363)
 
-[node name="main_scene" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hdmuv"]
+normal = Vector2(0.999742, -0.0227214)
+distance = 181.003
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.247059, 0.247059, 0.247059, 1)
-position = Vector2(61, 198)
-scale = Vector2(5.55469, 1)
-texture = ExtResource("1_evclb")
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eaxkp"]
+normal = Vector2(-1, 0)
+distance = 36.2353
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nprij"]
+normal = Vector2(0, 1)
+distance = 111.018
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_17l6b"]
+normal = Vector2(0.00613485, -0.999981)
+distance = 128.016
+
+[node name="main_scene" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("2_x10ks")]
 position = Vector2(-203, 92)
+
+[node name="HandPolygon" parent="player/Node2D" index="2"]
+color = Color(1, 1, 1, 0)
+
+[node name="RightULeg" parent="player/Node2D/Skeleton2D/Body/RightLeg" index="0"]
+scale = Vector2(1, 1)
+
+[node name="RightLLeg" parent="player/Node2D/Skeleton2D/Body/RightLeg/RightULeg" index="0"]
+scale = Vector2(1, 1)
+
+[node name="AnimationTree" parent="player/Node2D" index="7"]
+parameters/RunStateMachine/playback = SubResource("AnimationNodeStateMachinePlayback_hp0hp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -39,4 +64,61 @@ Scene = ExtResource("4_no55a")
 position = Vector2(576, 138)
 shape = SubResource("RectangleShape2D_pufwo")
 
+[node name="Floor" type="Sprite2D" parent="."]
+modulate = Color(0.396078, 0.396078, 0.396078, 1)
+z_index = -2
+position = Vector2(965.072, 265)
+scale = Vector2(19.0307, 1.87625)
+texture = ExtResource("1_evclb")
+
+[node name="Package2" type="Sprite2D" parent="."]
+position = Vector2(-230, 191)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_2dftp")
+
+[node name="Package3" type="Sprite2D" parent="."]
+position = Vector2(-336, 171)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_2dftp")
+
+[node name="Package4" type="Sprite2D" parent="."]
+position = Vector2(-116, 177)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_2dftp")
+
+[node name="LeftBorder" type="StaticBody2D" parent="."]
+position = Vector2(-470, 12)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder"]
+position = Vector2(-846, -4)
+shape = SubResource("WorldBoundaryShape2D_hdmuv")
+
+[node name="RightBorder" type="StaticBody2D" parent="."]
+position = Vector2(123, 86)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder"]
+position = Vector2(620.511, -6)
+shape = SubResource("WorldBoundaryShape2D_eaxkp")
+
+[node name="UpBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, -173)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_nprij")
+
+[node name="DownBorder" type="StaticBody2D" parent="."]
+position = Vector2(-1, 558)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownBorder"]
+position = Vector2(1, 74)
+shape = SubResource("WorldBoundaryShape2D_17l6b")
+
 [connection signal="body_entered" from="SwitchToNext" to="SwitchToNext" method="_on_body_entered"]
+
+[editable path="player"]

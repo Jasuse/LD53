@@ -13,6 +13,10 @@ var next_attack : float
 var time : float 
 var mirrored : bool = false
 
+@onready var enemy_death = $enemy_death
+@onready var enemy_melee = $enemy_melee
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
@@ -26,8 +30,9 @@ func _process(delta):
 			move_dir = (GameInstance.player.global_position - global_position).normalized()
 		else:
 			move_dir = Vector2.ZERO
-			if(next_attack < time):
+			if(next_attack < time && GameInstance.player.Health >= 0):
 				GameInstance.player.take_damage(Damage)
+				enemy_melee.play()
 				print("attacking")
 				next_attack = time + Delay
 
@@ -52,4 +57,5 @@ func take_damage(dmg : float):
 		var pud : Node2D = DeathPuddle.instantiate()
 		get_tree().current_scene.add_child(pud)
 		pud.global_position = global_position
+		enemy_death.play()
 		queue_free()
